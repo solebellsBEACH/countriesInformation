@@ -1,7 +1,30 @@
 @import "../../variables.scss";
 
+.container{
+
+}
+
+.content{
+padding: 4rem;
+}
+
 .carousel-container{
   width: 100%;
   height: 50vh;
   background-color: $primary-color;
+}
+.intro-container{
+  height: 10rem;
+  width: 50rem;
+
+}
+
+#github-label{
+  color: $primary-color;
+/* H3 SemiBold */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size:2rem;
+
 }
