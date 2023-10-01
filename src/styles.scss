@@ -32,4 +32,10 @@ button{
   justify-content: center;
   align-items: center;
   font-size:1rem;
+  width: fit-content;
+}
+
+button:hover{
+  transition: all 0.2s ease-in-out;
+  filter:brightness(0.8);
 }
