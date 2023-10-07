@@ -12,8 +12,8 @@
     <div class="filter-container">
       <h1>Select the region</h1>
       <section class="filter-grid">
-        <button class="filter-button" *ngFor="let regKey of regionKeys"
-          (click)="handleFilterButton(regKey)">{{regKey}}</button>
+        <app-filter-button *ngFor="let regKey of regionKeys" [label]="regKey" [value]="region"
+          (onClick)="handleFilterButton(regKey)"></app-filter-button>
       </section>
     </div>
   </section>
