@@ -15,6 +15,9 @@
         <app-filter-button *ngFor="let regKey of regionKeys" [label]="regKey" [value]="region"
           (onClick)="handleFilterButton(regKey)"></app-filter-button>
       </section>
+      <section class="countries-grid">
+        <app-country-item *ngFor="let countryItem of countriesList"></app-country-item>
+      </section>
     </div>
   </section>
 </div>

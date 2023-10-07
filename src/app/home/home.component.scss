@@ -13,8 +13,6 @@
   background-color: $primary-color;
 }
 
-.intro-container {}
-
 #github-label {
   color: $primary-color;
   /* H3 SemiBold */
@@ -46,5 +44,15 @@
 
   @media screen and (max-width: 500px) {
     grid-template-columns: auto auto;
+  }
+}
+
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 1rem;
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 }
