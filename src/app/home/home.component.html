@@ -1,0 +1,23 @@
+<div class="container">
+  <section class="carousel-container"></section>
+  <section class="content">
+    <div class="intro-container">
+      <h3 id="github-label">solebellsBEACH</h3>
+      <h1>Learning Angular
+        with free countries API</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat
+        lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+      <button>Go to my GitHub</button>
+    </div>
+    <div class="filter-container">
+      <h1>Select the region</h1>
+      <section class="filter-grid">
+        <app-filter-button *ngFor="let regKey of regionKeys" [label]="regKey" [value]="region"
+          (onClick)="handleFilterButton(regKey)"></app-filter-button>
+      </section>
+      <section class="countries-grid">
+        <app-country-item [country]="countryItem" *ngFor="let countryItem of countriesList"></app-country-item>
+      </section>
+    </div>
+  </section>
+</div>
