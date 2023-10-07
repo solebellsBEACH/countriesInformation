@@ -1,1 +1,1 @@
-<button class="filter-button" (click)="buttonClick()">{{ label }}</button>
+<button [ngClass]="{'filter-button':isSelected}" (click)="buttonClick()">{{ label }}</button>
