@@ -10,16 +10,25 @@ import { Country } from '../shared/interfaces/responseBody';
 })
 export class HomeComponent implements OnInit {
 
-  contriesList: Country[] = [];
+  countriesList: Country[] = [];
   region: Regions = Regions.africa
-  regionKeys = Object.values(Regions)
+  regionKeys = Object.keys(Regions)
 
   constructor(private dataService: DataService) { }
 
-  ngOnInit(): void {
+  setCountriesList() {
     this.dataService.getDataByRegion(this.region).subscribe((response: Country[]) => {
-      this.contriesList = response.splice(0, 20);
+      this.countriesList = response.splice(0, 20);
     });
+  }
+
+  handleFilterButton(regionKey: string) {
+    this.region = regionKey as Regions
+    this.setCountriesList()
+  }
+
+  ngOnInit(): void {
+    this.setCountriesList()
   }
 
 }
