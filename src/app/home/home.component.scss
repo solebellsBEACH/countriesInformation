@@ -1,49 +1,57 @@
 @import "../../variables.scss";
 
-.container{
+.container {
   min-height: 100vh;
 }
 
-.content{
-padding: 4rem;
+.content {
+  padding: 4rem;
 }
 
-.carousel-container{
-  width: 100vw;
+.carousel-container {
   height: 50vh;
   background-color: $primary-color;
 }
-.intro-container{}
 
-#github-label{
+.intro-container {}
+
+#github-label {
   color: $primary-color;
-/* H3 SemiBold */
+  /* H3 SemiBold */
   font-family: 'Inter';
   font-style: normal;
   font-weight: 600;
-  font-size:2rem;
+  font-size: 2rem;
 
 }
 
-.filter-container{
-  margin-top:4rem;
-max-width:100vw;
+.filter-container {
+  margin-top: 4rem;
+  max-width: 100vw;
 }
 
 .filter-grid {
   display: grid;
-  grid-template-columns: auto auto auto auto;
-  gap:0.5rem 1rem;
+  grid-template-columns: auto auto auto auto auto;
+  gap: 0.5rem 1rem;
   width: fit-content;
-  @media screen and (max-width: 768px){
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: auto auto auto auto;
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: auto auto auto;
+  }
+
+  @media screen and (max-width: 500px) {
     grid-template-columns: auto auto;
   }
 }
 
-.filter-button{
-  color:white;
+.filter-button {
+  color: white;
   background: $primary-color;
-  border:none;
-  border-radius:5px;
-
+  border: none;
+  border-radius: 5px;
 }

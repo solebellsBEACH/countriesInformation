@@ -5,18 +5,14 @@
       <h3 id="github-label">solebellsBEACH</h3>
       <h1>Learning Angular
         with free countries API</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat
+        lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
       <button>Go to my GitHub</button>
     </div>
     <div class="filter-container">
       <h1>Select the region</h1>
       <section class="filter-grid">
-        <button class="filter-button">America</button>
-        <button class="filter-button">Africa</button>
-        <button class="filter-button">Oceania</button>
-        <button class="filter-button">America</button>
-        <button class="filter-button">Africa</button>
-        <button class="filter-button">Oceania</button>
+        <button class="filter-button" *ngFor="let regKey of regionKeys">{{regKey}}</button>
       </section>
     </div>
   </section>

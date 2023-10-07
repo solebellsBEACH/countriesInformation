@@ -12,11 +12,12 @@ export class HomeComponent implements OnInit {
 
   contriesList: Country[] = [];
   region: Regions = Regions.africa
+  regionKeys = Object.values(Regions)
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-    this.dataService.getDataByRegion(this.region).subscribe((response:Country[]) => {
+    this.dataService.getDataByRegion(this.region).subscribe((response: Country[]) => {
       this.contriesList = response.splice(0, 20);
     });
   }

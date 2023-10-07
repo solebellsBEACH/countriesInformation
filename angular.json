@@ -63,6 +63,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4200,
+            "liveReload": true
+          },
           "configurations": {
             "production": {
               "browserTarget": "countriesInformation:build:production"
