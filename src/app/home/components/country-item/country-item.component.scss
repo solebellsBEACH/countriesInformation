@@ -3,7 +3,14 @@
 section {
     display: flex;
     flex-direction: column;
-    padding: 0 0.5rem;
+    padding: 0.5rem;
+
+}
+
+img {
+    border: 1px solid $primary-color;
+    height: 200px;
+    object-fit: cover;
 }
 
 div {
