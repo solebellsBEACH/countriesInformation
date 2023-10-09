@@ -1,41 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
-*{
-color:#212B36;
-padding:0px;
-margin:0px;
-font-family: 'Inter';
+@import './variables.scss';
+
+* {
+  color: #212B36;
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Inter';
+
+
 }
 
+body {
+  background-color: $background;
+}
+
+
 @font-face {
-  font-family: 'Inter'; /* El nombre que quieras darle a tu fuente */
-  src: url('../src/assets/Inter-VariableFont_slnt\,wght.ttf') format('truetype'); /* Ruta a tu archivo de fuente */
+  font-family: 'Inter';
+  /* El nombre que quieras darle a tu fuente */
+  src: url('../src/assets/Inter-VariableFont_slnt\,wght.ttf') format('truetype');
+  /* Ruta a tu archivo de fuente */
   font-weight: normal;
   font-style: normal;
 }
 
-h1{
+h1 {
   font-family: 'Inter';
   font-size: 3rem;
   font-weight: bold;
 }
 
-p{
-  margin: 1rem 0 ;
+p {
+  margin: 1rem 0;
   font-size: 1rem;
 }
 
 
-button{
-  margin: 1rem 0 ;
+button {
+  margin: 1rem 0;
   display: flex;
   padding: 12px 30px;
   justify-content: center;
   align-items: center;
-  font-size:1rem;
+  font-size: 1rem;
   width: fit-content;
 }
 
-button:hover{
+button:hover {
   transition: all 0.2s ease-in-out;
-  filter:brightness(0.8);
+  filter: brightness(0.8);
 }

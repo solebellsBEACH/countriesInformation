@@ -5,7 +5,7 @@ import { CountryPageComponent } from './country-page/country-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'country/:name', component: CountryPageComponent },
+  { path: 'country/:pathName', component: CountryPageComponent },
   { path: 'home', component: HomeComponent }
 ];
 
