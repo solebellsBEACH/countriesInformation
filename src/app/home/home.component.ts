@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from './home.service';
 import { Regions } from '../shared/interfaces';
 import { Country } from '../shared/interfaces/responseBody';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,12 @@ export class HomeComponent implements OnInit {
   region: Regions = Regions.africa
   regionKeys = Object.keys(Regions)
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private router: Router) { }
+
+  goToMyGitProfile() {
+    const externalUrl = 'https://github.com/solebellsBEACH';
+    window.open(externalUrl, '_blank');
+  }
 
   setCountriesList() {
     this.dataService.getDataByRegion(this.region).subscribe((response: Country[]) => {

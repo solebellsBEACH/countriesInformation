@@ -23,11 +23,6 @@ export class CountryItemComponent {
       this.subregion = subregion
     }
   }
-
-  ngOnInit(): void {
-    console.log(this.country?.flags.png)
-  }
-
 }
 
 
