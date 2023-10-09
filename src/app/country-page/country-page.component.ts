@@ -12,6 +12,9 @@ export class CountryPageComponent {
   pathName: string | null = null
   data: Country | null = null
 
+  russiaValue = 17098242
+  comparativePercent = ''
+
   constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router) { }
 
   getCountry(pathName: string) {
@@ -21,11 +24,14 @@ export class CountryPageComponent {
         alert('Not found name country')
         this.router.navigate(['/home'])
       }
-      else this.data = response[0]
+      else {
+        this.data = response[0]
+        this.comparativePercent = (((this.data?.area || 10) / this.russiaValue) * 100) + '%'
+        console.log(this.russiaValue / (this.data?.area || 1))
+      }
 
     })
   }
-
   ngOnInit(): void {
     this.pathName = this.route.snapshot.paramMap.get('pathName')
     if (!this.pathName) alert('Not Found pathName')

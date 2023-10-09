@@ -74,6 +74,10 @@ img {
         text-align: end;
     }
 
+    #population-value {
+        margin-top: 0.3rem;
+    }
+
     div {
         display: flex;
         flex-direction: column;
@@ -107,4 +111,25 @@ p {
     font-size: 16px;
     font-weight: 500;
     color: $gray;
+}
+
+.area-comparative {
+    width: 100%;
+
+    border: 1px solid $primary-color;
+    border-radius: 1rem;
+
+    .inside-comparative {
+        border-radius: 1rem;
+        width: 40%;
+        background: $primary-color;
+        min-height: 3.5rem;
+
+        color: white;
+        font-weight: 600;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
