@@ -14,6 +14,7 @@ export class CountryPageComponent {
 
   russiaValue = 17098242
   comparativePercent = ''
+  imgSrc = ''
 
   constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router) { }
 
@@ -27,7 +28,7 @@ export class CountryPageComponent {
       else {
         this.data = response[0]
         this.comparativePercent = (((this.data?.area || 10) / this.russiaValue) * 100) + '%'
-        console.log(this.russiaValue / (this.data?.area || 1))
+        this.imgSrc = (response[0] as Country).coatOfArms.png || (response[0] as Country).flags.png
       }
 
     })
