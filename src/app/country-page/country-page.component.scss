@@ -3,7 +3,8 @@
 section {
     display: flex;
     flex-direction: row;
-    padding: 3rem;
+    padding: 1rem;
+    justify-content: center;
 
     @media (max-width:1024px) {
         flex-direction: column;
@@ -13,7 +14,7 @@ section {
 
 img {
     object-fit: cover;
-    width: 20rem;
+    width: 40%;
     margin-right: 3rem;
 
     @media (max-width:1024px) {
@@ -22,19 +23,26 @@ img {
     }
 }
 
-div {
-    min-height: 20rem;
-    width: 100%;
+.content {
+    padding: 0 1rem;
 }
 
 .content-rigth {
+    display: flex;
+    flex-direction: column;
+    min-height: 20rem;
+    width: 40%;
+    padding: 1rem;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
+
+    @media (max-width:1024px) {
+        width: 80%;
+    }
 
     &:hover {
         transform: translateY(-5px);
@@ -43,6 +51,34 @@ div {
 
 }
 
+.field-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.about-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p {
+        width: 60%;
+    }
+
+    #percent {
+        width: 50%;
+        text-align: end;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
 
 h1 {
     font-size: 36px;
@@ -56,7 +92,7 @@ h2 {
     color: $text-color;
 }
 
-label {
+h6 {
     color: $text-color;
     font-size: 16px;
     font-weight: 500;
@@ -64,7 +100,6 @@ label {
 
 p {
     font-size: 16px;
-    font-style: normal;
     font-weight: 500;
     color: $gray;
 }
