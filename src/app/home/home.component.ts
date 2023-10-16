@@ -16,6 +16,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private dataService: DataService) { }
 
+  goToMyGitProfile() {
+    const externalUrl = 'https://github.com/solebellsBEACH';
+    window.open(externalUrl, '_blank');
+  }
+
   setCountriesList() {
     this.dataService.getDataByRegion(this.region).subscribe((response: Country[]) => {
       this.countriesList = response.splice(0, 20);

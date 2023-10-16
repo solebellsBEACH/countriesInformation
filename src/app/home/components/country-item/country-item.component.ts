@@ -12,7 +12,7 @@ export class CountryItemComponent {
   name = ''
   capital = ''
   subregion = ''
-
+  path = ''
 
   ngOnChanges() {
     if (this.country) {
@@ -21,13 +21,10 @@ export class CountryItemComponent {
       this.name = name.common
       this.capital = capital[0] || 'Not found capital'
       this.subregion = subregion
+      this.path = '/country/' + name.common
+      console.log(this.path)
     }
   }
-
-  ngOnInit(): void {
-    console.log(this.country?.flags.png)
-  }
-
 }
 
 

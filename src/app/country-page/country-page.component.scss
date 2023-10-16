@@ -1,0 +1,137 @@
+@import '../../variables.scss';
+
+section {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    justify-content: center;
+
+    @media (max-width:1024px) {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+img {
+    object-fit: cover;
+    width: 40%;
+    margin-right: 3rem;
+
+    @media (max-width:1024px) {
+        margin-right: 0rem;
+        margin-bottom: 3rem;
+    }
+}
+
+.content {
+    padding: 0 1rem;
+}
+
+.content-rigth {
+    display: flex;
+    flex-direction: column;
+    min-height: 20rem;
+    width: 40%;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width:1024px) {
+        width: 80%;
+    }
+
+
+
+}
+
+.field-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+}
+
+.about-content {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    p {
+        width: 60%;
+    }
+
+    #percent {
+        width: 50%;
+        text-align: end;
+    }
+
+    #population-value {
+        margin-top: 0.3rem;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: $text-color;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: $text-color;
+}
+
+h5 {
+    font-size: 16px;
+}
+
+h6 {
+    color: $text-color;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 500;
+    color: $gray;
+}
+
+.area-comparative {
+    width: 100%;
+
+    border: 1px solid $primary-color;
+    border-radius: 1rem;
+
+    .inside-comparative {
+        border-radius: 1rem;
+        width: 40%;
+        background: $primary-color;
+        min-height: 3.5rem;
+
+        color: white;
+        font-weight: 600;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

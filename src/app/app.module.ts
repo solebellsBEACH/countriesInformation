@@ -7,13 +7,15 @@ import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FilterButtonComponent } from './home/components/filter-button/filter-button.component';
 import { CountryItemComponent } from './home/components/country-item/country-item.component';
+import { CountryPageComponent } from './country-page/country-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     FilterButtonComponent,
-    CountryItemComponent
+    CountryItemComponent,
+    CountryPageComponent
   ],
   imports: [
     BrowserModule,

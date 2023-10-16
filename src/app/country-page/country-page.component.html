@@ -1,0 +1,49 @@
+<section>
+    <img [src]="imgSrc" alt="country-png">
+    <div class="content-rigth">
+        <h1>{{data?.name?.common}}</h1>
+        <div class="content">
+            <div class="about-content">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non erat quam. Vestibulum aliquam nibh
+                    dui, et aliquet nibh euismod quis.</p>
+                <div>
+                    <h2>
+                        Population
+                    </h2>
+                    <h6 id="population-value">
+                        {{data?.population}} habs
+                    </h6>
+                    <p id="percent">
+                        +12% more then, Brazil
+                    </p>
+                </div>
+            </div>
+            <div class="field-content">
+                <h5>Region</h5>
+                <h6>{{data?.region}}</h6>
+            </div>
+            <div class="field-content">
+                <h5>Subregion</h5>
+                <h6>{{data?.subregion}}</h6>
+            </div>
+            <div class="field-content">
+                <h5>Is Independent</h5>
+                <h6>{{data?.independent}}</h6>
+            </div>
+            <div class="field-content">
+                <h5>Land Locked</h5>
+                <h6>{{data?.landlocked}}</h6>
+            </div>
+            <p class="divider"></p>
+            <h5>
+                Area of {{data?.name?.common}} compared to russia
+            </h5>
+            <p>
+                Russia area {{russiaValue}} Km2
+            </p>
+            <div class="area-comparative">
+                <div class="inside-comparative" [style.width]="comparativePercent">{{data?.area}} KM</div>
+            </div>
+        </div>
+    </div>
+</section>
