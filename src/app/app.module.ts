@@ -8,6 +8,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FilterButtonComponent } from './home/components/filter-button/filter-button.component';
 import { CountryItemComponent } from './home/components/country-item/country-item.component';
 import { CountryPageComponent } from './country-page/country-page.component';
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from './store/app.reducer';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { CountryPageComponent } from './country-page/country-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({ app: appReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent]
