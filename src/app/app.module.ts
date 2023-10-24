@@ -9,9 +9,9 @@ import { FilterButtonComponent } from './home/components/filter-button/filter-bu
 import { CountryItemComponent } from './home/components/country-item/country-item.component';
 import { CountryPageComponent } from './country-page/country-page.component';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './store/app.reducer';
+import { appReducer } from './store/app/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './store/app.effects';
+import { AppEffects } from './store/app/app.effects';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LoadingLetterComponent } from './shared/components/loading-letter/loading-letter.component';
 import { ErrorStatusComponent } from './shared/components/error-status/error-status.component';

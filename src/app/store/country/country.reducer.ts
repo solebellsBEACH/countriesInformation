@@ -1,33 +1,33 @@
 // app.reducer.ts
 import { createReducer, on } from '@ngrx/store';
-import * as appActions from './app.actions';
-import { AppState, AppStateInitialValue } from './app.state';
+import * as countryActions from './country.actions';
+import { AppState, AppStateInitialValue } from 'src/app/shared/interfaces/state';
 
 export const initialState: AppState = AppStateInitialValue
 
 export const appReducer = createReducer(
     initialState,
-    on(appActions.loadCountries, (state) => ({
+    on(countryActions.loadCountryPage, (state) => ({
         ...state,
-        countries: {
+        country: {
             ...state.countries,
             loading: true,
             error: false,
         }
     })),
-    on(appActions.loadCountriesSuccess, (state, { countriesList }) => ({
+    on(countryActions.loadCountryPageSuccess, (state, { country }) => ({
         ...state,
-        countries: {
-            data: { countriesList },
+        country: {
+            data: { country },
             loading: false,
             error: false,
         }
 
     })),
-    on(appActions.loadCountriesFailure, (state) => (
+    on(countryActions.loadCountryPageFailure, (state) => (
         {
             ...state,
-            countries: {
+            country: {
                 ...state.countries,
                 loading: false,
                 error: true

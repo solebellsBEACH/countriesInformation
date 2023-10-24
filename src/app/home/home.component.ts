@@ -3,8 +3,8 @@ import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
 import { Regions } from '../shared/interfaces';
-import { AppState } from '../store/app.state';
-import { loadCountries } from '../store/app.actions';
+import { AppState } from '../shared/interfaces/state';
+import { loadCountries } from '../store/app/app.actions';
 
 @Component({
   selector: 'app-home',
