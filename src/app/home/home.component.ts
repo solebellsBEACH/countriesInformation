@@ -30,12 +30,16 @@ export class HomeComponent implements OnInit {
     window.open(externalUrl, '_blank');
   }
 
+  getCountries() {
+    this.store.dispatch(loadCountries({ region: this.region }));
+  }
+
   handleFilterButton(regionKey: string) {
     this.region = regionKey as Regions;
-    // this.setCountriesList();
+    this.getCountries();
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadCountries());
+    this.getCountries();
   }
 }

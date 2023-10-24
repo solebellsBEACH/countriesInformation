@@ -13,10 +13,9 @@ export class AppEffects {
     loadData$ = createEffect(() =>
         this.actions$.pipe(
             ofType(fromAppActions.loadCountries),
-            switchMap(() =>
-                this.dataService.getDataByRegion().pipe(
+            switchMap((props) =>
+                this.dataService.getDataByRegion(props.region).pipe(
                     map((data: Country[]) => {
-                        console.log(data.slice(0, 20))
                         return fromAppActions.loadCountriesSuccess({ countriesList: data.slice(0, 20) })
                     }),
                     catchError((error) => of(fromAppActions.loadCountriesFailure({ error })))
