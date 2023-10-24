@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app.effects';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LoadingLetterComponent } from './shared/components/loading-letter/loading-letter.component';
+import { ErrorStatusComponent } from './shared/components/error-status/error-status.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { LoadingLetterComponent } from './shared/components/loading-letter/loadi
     CountryItemComponent,
     CountryPageComponent,
     LoadingComponent,
-    LoadingLetterComponent
+    LoadingLetterComponent,
+    ErrorStatusComponent
   ],
   imports: [
     BrowserModule,

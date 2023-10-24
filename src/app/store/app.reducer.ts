@@ -24,9 +24,14 @@ export const appReducer = createReducer(
         }
 
     })),
-    on(appActions.loadCountriesFailure, (state, { error }) => ({
-        ...state,
-        loading: false,
-        error,
-    }))
+    on(appActions.loadCountriesFailure, (state) => (
+        {
+            ...state,
+            countries: {
+                ...state.countries,
+                loading: false,
+                error: true
+            }
+        }
+    ))
 );

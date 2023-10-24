@@ -5,4 +5,4 @@ import { Regions } from '../shared/interfaces';
 
 export const loadCountries = createAction('COUNTRIES_REQUEST', props<{ region: Regions }>());
 export const loadCountriesSuccess = createAction('COUNTRIES_SUCCESS', props<{ countriesList: Country[] }>());
-export const loadCountriesFailure = createAction('COUNTRIES_FAIL', props<{ error: boolean }>());
+export const loadCountriesFailure = createAction('COUNTRIES_FAIL');

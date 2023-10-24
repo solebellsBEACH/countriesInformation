@@ -18,7 +18,7 @@ export class AppEffects {
                     map((data: Country[]) => {
                         return fromAppActions.loadCountriesSuccess({ countriesList: data.slice(0, 20) })
                     }),
-                    catchError((error) => of(fromAppActions.loadCountriesFailure({ error })))
+                    catchError((error) => of(fromAppActions.loadCountriesFailure()))
                 )
             )
         )
