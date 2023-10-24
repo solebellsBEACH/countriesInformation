@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import * as fromAppActions from './app.actions';
 import { DataService } from '../home/home.service';
+import { Country } from '../shared/interfaces/responseBody';
 
 @Injectable()
 export class AppEffects {
@@ -14,9 +15,9 @@ export class AppEffects {
             ofType(fromAppActions.loadCountries),
             switchMap(() =>
                 this.dataService.getDataByRegion().pipe(
-                    map((data) => {
-                        console.log(data)
-                        return fromAppActions.loadCountriesSuccess({ countriesList: [] })
+                    map((data: Country[]) => {
+                        console.log(data.slice(0, 20))
+                        return fromAppActions.loadCountriesSuccess({ countriesList: data.slice(0, 20) })
                     }),
                     catchError((error) => of(fromAppActions.loadCountriesFailure({ error })))
                 )

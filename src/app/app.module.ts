@@ -10,6 +10,8 @@ import { CountryItemComponent } from './home/components/country-item/country-ite
 import { CountryPageComponent } from './country-page/country-page.component';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './store/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { AppEffects } from './store/app.effects';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { appReducer } from './store/app.reducer';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ app: appReducer }),
+    EffectsModule.forRoot([AppEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

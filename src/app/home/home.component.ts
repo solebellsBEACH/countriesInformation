@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './home.service';
 import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -18,24 +17,18 @@ export class HomeComponent implements OnInit {
 
   countriesList$: Observable<Country[]>;
   loading$: Observable<boolean>;
-  error$: Observable<any>;
+  error$: Observable<boolean>;
 
-  constructor(private dataService: DataService, private store: Store<AppState>) {
-    this.countriesList$ = this.store.select((state) => state.countries.data.countriesList);
-    this.loading$ = this.store.select((state) => state.countries.loading);
-    this.error$ = this.store.select((state) => state.countries.error);
+  constructor(private store: Store<{ app: AppState }>) {
+    this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
+    this.loading$ = this.store.select((state) => state.app.countries.loading);
+    this.error$ = this.store.select((state) => state.app.countries.error);
   }
 
   goToMyGitProfile() {
     const externalUrl = 'https://github.com/solebellsBEACH';
     window.open(externalUrl, '_blank');
   }
-
-  // setCountriesList() {
-  //   this.dataService.getDataByRegion(this.region).subscribe((response: Country[]) => {
-  //     this.store.dispatch(appActions.getCountries({ countryList: response.slice(0, 20) }));
-  //   });
-  // }
 
   handleFilterButton(regionKey: string) {
     this.region = regionKey as Regions;
