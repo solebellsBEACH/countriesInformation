@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 import { AppState } from '../store/app.state';
 import { loadCountries } from '../store/app.actions';
@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
   countriesList$: Observable<Country[]>;
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
+
+  showCountries = false;
 
   constructor(private store: Store<{ app: AppState }>) {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
@@ -40,6 +42,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    combineLatest(this.loading$, this.error$).subscribe(([loading, error]) => {
+      this.showCountries = !loading && !error;
+    });
     this.getCountries();
   }
 }

@@ -19,11 +19,11 @@
         <app-filter-button *ngFor="let regKey of regionKeys" [label]="regKey" [value]="region"
           (onClick)="handleFilterButton(regKey)"></app-filter-button>
       </section>
-      <section class="countries-grid">
-        <app-loading-letter></app-loading-letter>
-        <!-- <app-country-item [country]="countryItem"
-          *ngFor="let countryItem of (countriesList$ | async)"></app-country-item> -->
+      <section class="countries-grid" *ngIf="showCountries">
+        <app-country-item [country]="countryItem"
+          *ngFor="let countryItem of (countriesList$ | async)"></app-country-item>
       </section>
+      <app-loading-letter *ngIf="(loading$ | async)" [label]="'Loading your countries '"></app-loading-letter>
     </div>
   </section>
 </div>

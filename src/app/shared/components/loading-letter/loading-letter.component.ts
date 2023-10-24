@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loading-letter',
@@ -6,9 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./loading-letter.component.scss']
 })
 export class LoadingLetterComponent {
-  phrase = 'Hello ';
+  @Input() label = 'Loading ';
   animatedText = '';
-  totalTime = 1000
+  @Input() totalTime = 1000
 
   constructor() { }
 
@@ -17,17 +17,17 @@ export class LoadingLetterComponent {
   }
 
   animateLetters() {
-    const phraseLength = this.phrase.length;
+    const labelLength = this.label.length;
     let currentIndex = 0;
 
     const animationInterval = setInterval(() => {
-      this.animatedText = this.phrase.slice(0, currentIndex + 1);
+      this.animatedText = this.label.slice(0, currentIndex + 1);
       currentIndex++;
 
-      if (currentIndex === phraseLength) {
+      if (currentIndex === labelLength) {
         currentIndex = 0;
         this.animatedText = '';
       }
-    }, (this.totalTime / this.phrase.length));
+    }, (this.totalTime / this.label.length));
   }
 }

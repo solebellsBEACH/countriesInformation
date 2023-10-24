@@ -13,7 +13,6 @@ export class DataService {
 
   getDataByRegion(region: Regions): Observable<any> {
     const url = `${this.apiUrl}region/${region}`;
-    console.log("SKSKSKSIKSK")
     return this.http.get(url);
   }
 }
