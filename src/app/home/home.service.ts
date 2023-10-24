@@ -9,9 +9,9 @@ import { Regions } from '../shared/interfaces';
 export class DataService {
   private apiUrl = 'https://restcountries.com/v3.1/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getDataByRegion(region: Regions): Observable<any> {
+  getDataByRegion(region: Regions = Regions.africa): Observable<any> {
     const url = `${this.apiUrl}region/${region}`;
     return this.http.get(url);
   }

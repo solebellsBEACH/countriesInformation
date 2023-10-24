@@ -16,7 +16,8 @@
           (onClick)="handleFilterButton(regKey)"></app-filter-button>
       </section>
       <section class="countries-grid">
-        <app-country-item [country]="countryItem" *ngFor="let countryItem of countriesList"></app-country-item>
+        <app-country-item [country]="countryItem"
+          *ngFor="let countryItem of (countriesList$ | async)"></app-country-item>
       </section>
     </div>
   </section>

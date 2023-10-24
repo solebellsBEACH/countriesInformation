@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './home.service';
-import { Regions } from '../shared/interfaces';
 import { Country } from '../shared/interfaces/responseBody';
-import { Store, createSelector } from '@ngrx/store';
-import * as appActions from '../store/app.actions';
-import { appSelect, selectCountries } from '../store/app.select';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Regions } from '../shared/interfaces';
+import { AppState } from '../store/app.state';
+import { loadCountries } from '../store/app.actions';
 
 @Component({
   selector: 'app-home',
@@ -12,34 +13,36 @@ import { appSelect, selectCountries } from '../store/app.select';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  sel = this.store.select(selectCountries).subscribe((countries) => {
-    this.countriesList = countries
-  });
-  countriesList: Country[] = []
-  region: Regions = Regions.africa
-  regionKeys = Object.keys(Regions)
+  regionKeys = Object.keys(Regions);
+  region: Regions = Regions.africa;
 
+  countriesList$: Observable<Country[]>;
+  loading$: Observable<boolean>;
+  error$: Observable<any>;
 
-  constructor(private dataService: DataService, private store: Store) { }
+  constructor(private dataService: DataService, private store: Store<AppState>) {
+    this.countriesList$ = this.store.select((state) => state.countries.data.countriesList);
+    this.loading$ = this.store.select((state) => state.countries.loading);
+    this.error$ = this.store.select((state) => state.countries.error);
+  }
 
   goToMyGitProfile() {
     const externalUrl = 'https://github.com/solebellsBEACH';
     window.open(externalUrl, '_blank');
   }
 
-  setCountriesList() {
-    this.dataService.getDataByRegion(this.region).subscribe((response: Country[]) => {
-      this.store.dispatch(appActions.getCountries({ countries: response.splice(0, 20) }));
-    });
-  }
+  // setCountriesList() {
+  //   this.dataService.getDataByRegion(this.region).subscribe((response: Country[]) => {
+  //     this.store.dispatch(appActions.getCountries({ countryList: response.slice(0, 20) }));
+  //   });
+  // }
 
   handleFilterButton(regionKey: string) {
-    this.region = regionKey as Regions
-    this.setCountriesList()
+    this.region = regionKey as Regions;
+    // this.setCountriesList();
   }
 
   ngOnInit(): void {
-    this.setCountriesList()
+    this.store.dispatch(loadCountries());
   }
-
 }
