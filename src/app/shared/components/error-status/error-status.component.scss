@@ -1,0 +1,20 @@
+.error-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    /* Cor de fundo para indicar erro */
+    font-size: 100px;
+    /* Cor do texto */
+}
+
+p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.error-indicator i {
+    font-size: 24px;
+    margin-right: 10px;
+
+}

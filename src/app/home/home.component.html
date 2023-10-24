@@ -1,5 +1,9 @@
 <div class="container">
-  <section class="carousel-container"></section>
+  <div class="carousel-container">
+    <img class="carousel-image"
+      src="https://brasil.un.org/sites/default/files/styles/hero_header_2xl_1x/public/2023-10/UN7999923__DSC9988_.jpg?itok=Jw2rtpVi"
+      alt="ONU Image">
+  </div>
   <section class="content">
     <div class="intro-container">
       <h3 id="github-label">solebellsBEACH</h3>
@@ -15,9 +19,12 @@
         <app-filter-button *ngFor="let regKey of regionKeys" [label]="regKey" [value]="region"
           (onClick)="handleFilterButton(regKey)"></app-filter-button>
       </section>
-      <section class="countries-grid">
-        <app-country-item [country]="countryItem" *ngFor="let countryItem of countriesList"></app-country-item>
+      <section class="countries-grid" *ngIf="showCountries">
+        <app-country-item [country]="countryItem"
+          *ngFor="let countryItem of (countriesList$ | async)"></app-country-item>
       </section>
+      <app-loading-letter *ngIf="(loading$ | async)" [label]="'Loading your countries... '"></app-loading-letter>
+      <app-error-status *ngIf="(error$ | async)"></app-error-status>
     </div>
   </section>
 </div>

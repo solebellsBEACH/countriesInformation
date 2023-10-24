@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from './home.service';
-import { Regions } from '../shared/interfaces';
 import { Country } from '../shared/interfaces/responseBody';
+import { Store } from '@ngrx/store';
+import { Observable, combineLatest } from 'rxjs';
+import { Regions } from '../shared/interfaces';
+import { AppState } from '../store/app.state';
+import { loadCountries } from '../store/app.actions';
 
 @Component({
   selector: 'app-home',
@@ -9,31 +12,39 @@ import { Country } from '../shared/interfaces/responseBody';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  regionKeys = Object.keys(Regions);
+  region: Regions = Regions.africa;
 
-  countriesList: Country[] = [];
-  region: Regions = Regions.africa
-  regionKeys = Object.keys(Regions)
+  countriesList$: Observable<Country[]>;
+  loading$: Observable<boolean>;
+  error$: Observable<boolean>;
 
-  constructor(private dataService: DataService) { }
+  showCountries = false;
+
+  constructor(private store: Store<{ app: AppState }>) {
+    this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
+    this.loading$ = this.store.select((state) => state.app.countries.loading);
+    this.error$ = this.store.select((state) => state.app.countries.error);
+  }
 
   goToMyGitProfile() {
     const externalUrl = 'https://github.com/solebellsBEACH';
     window.open(externalUrl, '_blank');
   }
 
-  setCountriesList() {
-    this.dataService.getDataByRegion(this.region).subscribe((response: Country[]) => {
-      this.countriesList = response.splice(0, 20);
-    });
+  getCountries() {
+    this.store.dispatch(loadCountries({ region: this.region }));
   }
 
   handleFilterButton(regionKey: string) {
-    this.region = regionKey as Regions
-    this.setCountriesList()
+    this.region = regionKey as Regions;
+    this.getCountries();
   }
 
   ngOnInit(): void {
-    this.setCountriesList()
+    combineLatest(this.loading$, this.error$).subscribe(([loading, error]) => {
+      this.showCountries = !error;
+    });
+    this.getCountries();
   }
-
 }
