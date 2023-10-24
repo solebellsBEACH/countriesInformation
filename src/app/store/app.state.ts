@@ -1,5 +1,6 @@
 import { Country } from "../shared/interfaces/responseBody";
 
+
 export interface AppState {
     countries: ICountriesState
 }

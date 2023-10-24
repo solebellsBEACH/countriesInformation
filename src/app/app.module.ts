@@ -12,6 +12,8 @@ import { StoreModule } from '@ngrx/store';
 import { appReducer } from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app.effects';
+import { LoadingComponent } from './shared/components/loading/loading.component';
+import { LoadingLetterComponent } from './shared/components/loading-letter/loading-letter.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { AppEffects } from './store/app.effects';
     HomeComponent,
     FilterButtonComponent,
     CountryItemComponent,
-    CountryPageComponent
+    CountryPageComponent,
+    LoadingComponent,
+    LoadingLetterComponent
   ],
   imports: [
     BrowserModule,
