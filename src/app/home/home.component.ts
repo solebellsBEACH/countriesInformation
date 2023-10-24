@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     combineLatest(this.loading$, this.error$).subscribe(([loading, error]) => {
-      this.showCountries = !loading && !error;
+      this.showCountries = !error;
     });
     this.getCountries();
   }
