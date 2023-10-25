@@ -1,6 +1,6 @@
 <section>
-    <img [src]="imgSrc" alt="country-png">
-    <div class="content-rigth">
+    <img *ngIf="!(error$ | async)" [src]="imgSrc" alt="country-png">
+    <div class="content-rigth" *ngIf="!(error$ | async)">
         <h1>{{data?.name?.common}}</h1>
         <div class="content">
             <div class="about-content">
@@ -46,4 +46,7 @@
             </div>
         </div>
     </div>
+
+    <app-loading-letter *ngIf="(loading$ | async)" [label]="'Loading your country... '"></app-loading-letter>
+    <app-error-status *ngIf="(error$ | async)"></app-error-status>
 </section>

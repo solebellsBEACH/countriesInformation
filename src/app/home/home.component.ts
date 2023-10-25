@@ -3,8 +3,8 @@ import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
 import { Regions } from '../shared/interfaces';
-import { AppState } from '../store/app.state';
-import { loadCountries } from '../store/app.actions';
+import { IStore } from '../shared/interfaces/state';
+import { loadCountries } from '../store/app/app.actions';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   showCountries = false;
 
-  constructor(private store: Store<{ app: AppState }>) {
+  constructor(private store: Store<IStore>) {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
