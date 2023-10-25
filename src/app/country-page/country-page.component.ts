@@ -28,10 +28,10 @@ export class CountryPageComponent {
     this.error$ = this.store.select((state) => state.country.countryPage.error);
     this.data$ = this.store.select((state) => state.country.countryPage.data.country);
 
-    this.data$.subscribe(e => {
-      this.comparativePercent = (((e?.area || 10) / this.russiaValue) * 100) + '%'
-      this.imgSrc = (e as Country).coatOfArms.png || (e as Country).flags.png
-      this.data = e
+    this.data$.subscribe(country => {
+      this.comparativePercent = (((country?.area || 10) / this.russiaValue) * 100) + '%'
+      this.imgSrc = country?.coatOfArms.png || country?.flags.png || ''
+      this.data = country
     })
   }
 
