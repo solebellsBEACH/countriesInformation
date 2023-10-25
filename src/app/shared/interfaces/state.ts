@@ -5,8 +5,17 @@ export const DefaultStateInitialValue: IDefaultStateProps = {
     error: false,
 }
 
+export interface IStore {
+    app: AppState
+    country: CountryPageState
+}
+
 export interface AppState {
     countries: ICountriesState
+
+}
+
+export interface CountryPageState {
     countryPage: ICountryPageState
 }
 
@@ -34,5 +43,9 @@ export const CountryPageStateDefaultValue: ICountryPageState = {
 
 export const AppStateInitialValue: AppState = {
     countries: CountriesStateDefaultValue,
+}
+
+export const CountryPageInitialValue: CountryPageState = {
     countryPage: CountryPageStateDefaultValue,
 }
+
