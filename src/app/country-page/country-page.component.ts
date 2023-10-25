@@ -14,9 +14,8 @@ import { IStore } from '../shared/interfaces/state';
 export class CountryPageComponent {
   pathName: string | null = null
   data: Country | null = null
-  russiaValue = 17098242
-  comparativePercent = ''
   imgSrc = ''
+  imageAlt = ''
 
 
   loading$: Observable<boolean>;
@@ -29,28 +28,14 @@ export class CountryPageComponent {
     this.data$ = this.store.select((state) => state.country.countryPage.data.country);
 
     this.data$.subscribe(country => {
-      this.comparativePercent = (((country?.area || 10) / this.russiaValue) * 100) + '%'
       this.imgSrc = country?.coatOfArms.png || country?.flags.png || ''
       this.data = country
+      this.imageAlt = `This image is a flag/coat of arms from ${country?.name || 'page country'}`
     })
   }
 
   getCountry(pathName: string) {
     this.store.dispatch(loadCountryPage({ pathName }));
-
-    // this.dataService.getCountry(pathName).subscribe((res-ponse: any) => {
-
-    //   if (response[1]) {
-    //     alert('Not found name country')
-    //     this.router.navigate(['/home'])
-    //   }
-    //   else {
-    //     this.data = response[0]
-    //     this.comparativePercent = (((this.data?.area || 10) / this.russiaValue) * 100) + '%'
-    //     this.imgSrc = (response[0] as Country).coatOfArms.png || (response[0] as Country).flags.png
-    //   }
-
-    // })
   }
   ngOnInit(): void {
 

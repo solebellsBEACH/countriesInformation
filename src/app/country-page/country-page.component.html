@@ -1,11 +1,10 @@
 <section>
-    <img *ngIf="!(error$ | async)" [src]="imgSrc" alt="country-png">
+    <img *ngIf="!(error$ | async)" [src]="imgSrc" alt="imageAlt">
     <div class="content-rigth" *ngIf="!(error$ | async)">
         <h1>{{data?.name?.common}}</h1>
         <div class="content">
             <div class="about-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non erat quam. Vestibulum aliquam nibh
-                    dui, et aliquet nibh euismod quis.</p>
+                <p>{{data?.flags?.alt}}</p>
                 <div>
                     <h2>
                         Population
@@ -34,16 +33,11 @@
                 <h5>Land Locked</h5>
                 <h6>{{data?.landlocked}}</h6>
             </div>
-            <p class="divider"></p>
-            <h5>
-                Area of {{data?.name?.common}} compared to russia
-            </h5>
-            <p>
-                Russia area {{russiaValue}} Km2
-            </p>
-            <div class="area-comparative">
-                <div class="inside-comparative" [style.width]="comparativePercent">{{data?.area}} KM</div>
+            <div class="field-content">
+                <h5>Country Area</h5>
+                <h6>{{data?.area}} km²</h6>
             </div>
+            <p class="divider"></p>
         </div>
     </div>
 
