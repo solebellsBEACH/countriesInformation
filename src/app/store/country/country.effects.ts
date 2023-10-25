@@ -15,7 +15,8 @@ export class CountryEffects {
             ofType(fromCountryActions.loadCountryPage),
             switchMap((props: { pathName: string }) =>
                 this.dataService.getCountry(props.pathName).pipe(
-                    map((data: [Country]) => {
+                    map((data: Country[]) => {
+                        if (data[1]) throw new Error();
                         return fromCountryActions.loadCountryPageSuccess({ country: data[0] })
                     }
                     ),
