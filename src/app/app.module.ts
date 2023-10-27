@@ -19,6 +19,7 @@ import { ErrorStatusComponent } from './shared/components/error-status/error-sta
 import { CountryEffects } from './store/country/country.effects';
 import { MapEmbedComponent } from './country-page/components/map-embed/map-embed.component';
 import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
     LoadingLetterComponent,
     ErrorStatusComponent,
     MapEmbedComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

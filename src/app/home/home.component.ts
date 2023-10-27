@@ -5,6 +5,7 @@ import { Observable, combineLatest } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 import { IStore } from '../shared/interfaces/state';
 import { loadCountries } from '../store/app/app.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   showCountries = false;
 
-  constructor(private store: Store<IStore>) {
+  constructor(private store: Store<IStore>, private route: ActivatedRoute) {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
@@ -42,6 +43,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.route.snapshot.data)
     combineLatest(this.loading$, this.error$).subscribe(([loading, error]) => {
       this.showCountries = !error;
     });
