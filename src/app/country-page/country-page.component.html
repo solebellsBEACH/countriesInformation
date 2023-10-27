@@ -38,6 +38,13 @@
                 <h6>{{data?.area}} km²</h6>
             </div>
             <p class="divider"></p>
+            <div *ngIf="location; else loadingTemplate">
+                <app-map-embed [location]="location"></app-map-embed>
+            </div>
+
+            <ng-template #loadingTemplate>
+                <app-loading></app-loading>
+            </ng-template>
         </div>
     </div>
 
