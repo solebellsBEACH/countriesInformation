@@ -1,51 +1,49 @@
-import { Country } from "./responseBody";
+import { Country } from './responseBody';
 
 export const DefaultStateInitialValue: IDefaultStateProps = {
-    loading: false,
-    error: false,
-}
+  loading: false,
+  error: false,
+};
 
 export interface IStore {
-    app: AppState
-    country: CountryPageState
+  app: AppState;
+  country: CountryPageState;
 }
 
 export interface AppState {
-    countries: ICountriesState
-
+  countries: ICountriesState;
 }
 
 export interface CountryPageState {
-    countryPage: ICountryPageState
+  countryPage: ICountryPageState;
 }
 
 export interface IDefaultStateProps {
-    loading: boolean;
-    error: boolean;
+  loading: boolean;
+  error: boolean;
 }
 
 export interface ICountriesState extends IDefaultStateProps {
-    data: { countriesList: Country[] }
+  data: { countriesList: Country[] };
 }
 
 export const CountriesStateDefaultValue: ICountriesState = {
-    ...DefaultStateInitialValue,
-    data: { countriesList: [] },
-}
+  ...DefaultStateInitialValue,
+  data: { countriesList: [] },
+};
 
 export interface ICountryPageState extends IDefaultStateProps {
-    data: { country: Country | null }
+  data: { country: Country | null };
 }
 export const CountryPageStateDefaultValue: ICountryPageState = {
-    ...DefaultStateInitialValue,
-    data: { country: null },
-}
+  ...DefaultStateInitialValue,
+  data: { country: null },
+};
 
 export const AppStateInitialValue: AppState = {
-    countries: CountriesStateDefaultValue,
-}
+  countries: CountriesStateDefaultValue,
+};
 
 export const CountryPageInitialValue: CountryPageState = {
-    countryPage: CountryPageStateDefaultValue,
-}
-
+  countryPage: CountryPageStateDefaultValue,
+};

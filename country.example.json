@@ -1,0 +1,111 @@
+{
+    "name": {
+        "common": "Egypt",
+        "official": "Arab Republic of Egypt",
+        "nativeName": {
+            "ara": {
+                "official": "جمهورية مصر العربية",
+                "common": "مصر"
+            }
+        }
+    },
+    "tld": [
+        ".eg",
+        ".مصر"
+    ],
+    "cca2": "EG",
+    "ccn3": "818",
+    "cca3": "EGY",
+    "cioc": "EGY",
+    "independent": true,
+    "status": "officially-assigned",
+    "unMember": true,
+    "currencies": {
+        "EGP": {
+            "name": "Egyptian pound",
+            "symbol": "£"
+        }
+    },
+    "idd": {
+        "root": "+2",
+        "suffixes": [
+            "0"
+        ]
+    },
+    "capital": [
+        "Cairo"
+    ],
+    "altSpellings": [
+        "EG",
+        "Arab Republic of Egypt"
+    ],
+    "region": "Africa",
+    "subregion": "Northern Africa",
+    "languages": {
+        "ara": "Arabic"
+    },
+    "latlng": [
+        27.0,
+        30.0
+    ],
+    "landlocked": false,
+    "borders": [
+        "ISR",
+        "LBY",
+        "PSE",
+        "SDN"
+    ],
+    "area": 1002450.0,
+    "demonyms": {
+        "eng": {
+            "f": "Egyptian",
+            "m": "Egyptian"
+        },
+        "fra": {
+            "f": "Égyptienne",
+            "m": "Égyptien"
+        }
+    },
+    "flag": "\uD83C\uDDEA\uD83C\uDDEC",
+    "maps": {
+        "googleMaps": "https://goo.gl/maps/uoDRhXbsqjG6L7VG7",
+        "openStreetMaps": "https://www.openstreetmap.org/relation/1473947"
+    },
+    "population": 102334403,
+    "gini": {
+        "2017": 31.5
+    },
+    "fifa": "EGY",
+    "car": {
+        "signs": [
+            "ET"
+        ],
+        "side": "right"
+    },
+    "timezones": [
+        "UTC+02:00"
+    ],
+    "continents": [
+        "Africa"
+    ],
+    "flags": {
+        "png": "https://flagcdn.com/w320/eg.png",
+        "svg": "https://flagcdn.com/eg.svg",
+        "alt": "The flag of Egypt is composed of three equal horizontal bands of red, white and black, with Egypt's national emblem — a hoist-side facing gold eagle of Saladin — centered in the white band."
+    },
+    "coatOfArms": {
+        "png": "https://mainfacts.com/media/images/coats_of_arms/eg.png",
+        "svg": "https://mainfacts.com/media/images/coats_of_arms/eg.svg"
+    },
+    "startOfWeek": "sunday",
+    "capitalInfo": {
+        "latlng": [
+            30.05,
+            31.25
+        ]
+    },
+    "postalCode": {
+        "format": "#####",
+        "regex": "^(\\d{5})$"
+    }
+}

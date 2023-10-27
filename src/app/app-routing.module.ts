@@ -6,11 +6,11 @@ import { CountryPageComponent } from './country-page/country-page.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'country/:pathName', component: CountryPageComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -3,14 +3,14 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-loading-letter',
   templateUrl: './loading-letter.component.html',
-  styleUrls: ['./loading-letter.component.scss']
+  styleUrls: ['./loading-letter.component.scss'],
 })
 export class LoadingLetterComponent {
   @Input() label = 'Loading ';
   animatedText = '';
-  @Input() totalTime = 1000
+  @Input() totalTime = 1000;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.animateLetters();
@@ -28,6 +28,6 @@ export class LoadingLetterComponent {
         currentIndex = 0;
         this.animatedText = '';
       }
-    }, (this.totalTime / this.label.length));
+    }, this.totalTime / this.label.length);
   }
 }

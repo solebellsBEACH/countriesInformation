@@ -5,3 +5,8 @@ export enum Regions {
   america = 'america',
   oceania = 'oceania',
 }
+
+export interface ILocation {
+  latitude: number;
+  longitude: number;
+}

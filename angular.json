@@ -30,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -97,8 +98,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/font-awesome/css/font-awesome.min.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
