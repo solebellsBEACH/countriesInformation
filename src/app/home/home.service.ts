@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
   private apiUrl = 'https://restcountries.com/v3.1/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getDataByRegion(region: Regions): Observable<any> {
     const url = `${this.apiUrl}region/${region}`;

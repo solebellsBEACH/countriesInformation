@@ -9,22 +9,23 @@ import { DataService } from 'src/app/country-page/country-page.service';
 
 @Injectable()
 export class CountryEffects {
+  loadData$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromCountryActions.loadCountryPage),
+      switchMap((props: { pathName: string }) =>
+        this.dataService.getCountry(props.pathName).pipe(
+          map((data: Country[]) => {
+            if (data[1]) throw new Error();
+            return fromCountryActions.loadCountryPageSuccess({ country: data[0] });
+          }),
+          catchError((error) => of(fromCountryActions.loadCountryPageFailure())),
+        ),
+      ),
+    ),
+  );
 
-    loadData$ = createEffect(() =>
-        this.actions$.pipe(
-            ofType(fromCountryActions.loadCountryPage),
-            switchMap((props: { pathName: string }) =>
-                this.dataService.getCountry(props.pathName).pipe(
-                    map((data: Country[]) => {
-                        if (data[1]) throw new Error();
-                        return fromCountryActions.loadCountryPageSuccess({ country: data[0] })
-                    }
-                    ),
-                    catchError((error) => of(fromCountryActions.loadCountryPageFailure()))
-                )
-            )
-        )
-    );
-
-    constructor(private actions$: Actions, private dataService: DataService) { }
+  constructor(
+    private actions$: Actions,
+    private dataService: DataService,
+  ) {}
 }

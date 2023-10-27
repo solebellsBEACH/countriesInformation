@@ -18,7 +18,7 @@ import { LoadingLetterComponent } from './shared/components/loading-letter/loadi
 import { ErrorStatusComponent } from './shared/components/error-status/error-status.component';
 import { CountryEffects } from './store/country/country.effects';
 import { MapEmbedComponent } from './country-page/components/map-embed/map-embed.component';
-import { NgLeafletUniversalModule } from "ng-leaflet-universal";
+import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
 
 @NgModule({
   declarations: [
@@ -39,9 +39,9 @@ import { NgLeafletUniversalModule } from "ng-leaflet-universal";
     StoreModule.forRoot({ app: appReducer, country: countryReducer }),
     EffectsModule.forRoot([AppEffects, CountryEffects]),
 
-    NgLeafletUniversalModule
+    NgLeafletUniversalModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
