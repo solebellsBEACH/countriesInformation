@@ -1,7 +1,8 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import * as L from 'leaflet';
+import { AfterViewInit, Component, Input, ViewChild, OnInit } from '@angular/core';
 import { MapComponent } from 'ng-leaflet-universal';
-import { Marker } from 'ng-leaflet-universal/lib/models/marker.interface';
+import { Location, Marker } from 'ng-leaflet-universal/lib/models/marker.interface';
+import { ILocation } from 'src/app/shared/interfaces';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-map-embed',
@@ -10,13 +11,18 @@ import { Marker } from 'ng-leaflet-universal/lib/models/marker.interface';
 })
 export class MapEmbedComponent implements AfterViewInit {
   @ViewChild(MapComponent) mapComponent!: MapComponent;
-  markers: Marker[];
+  @Input() location?: ILocation;
 
   constructor() {
-    this.markers = [];
   }
 
-  ngAfterViewInit(): void {
-    this.mapComponent.updateMarkers(this.markers);
+  ngAfterViewInit() {
+    if (this.mapComponent && this.location) {
+      const marker: Marker = {
+        id: "country-location",
+        location: this.location
+      };
+      this.mapComponent.updateMarkers([marker]);
+    }
   }
 }
