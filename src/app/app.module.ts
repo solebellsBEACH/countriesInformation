@@ -22,6 +22,8 @@ import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FormContentComponent } from './home/components/form-content/form-content.component';
 import { AnimatedInputComponent } from './home/components/animated-input/animated-input.component';
+import { MatIconModule } from '@angular/material/icon';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -44,10 +46,11 @@ import { AnimatedInputComponent } from './home/components/animated-input/animate
     HttpClientModule,
     StoreModule.forRoot({ app: appReducer, country: countryReducer }),
     EffectsModule.forRoot([AppEffects, CountryEffects]),
-
+    MatIconModule,
     NgLeafletUniversalModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

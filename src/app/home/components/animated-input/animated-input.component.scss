@@ -1,0 +1,66 @@
+@import "../../../../variables.scss";
+
+.input-container {
+    display: flex;
+    align-items: center;
+
+    input {
+
+        transition: all 0.2s ease-in-out;
+
+        color: black;
+        width: 0px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 2rem;
+
+        border: none;
+
+        border-bottom-left-radius: 5px;
+        border-top-left-radius: 5px;
+
+        &:focus {
+            height: 2rem;
+            outline: none
+        }
+    }
+
+    .search-button {
+        max-height: 2.2rem;
+        padding: 0.3rem 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: $primary-color;
+
+        border: none;
+        border-radius: 5px;
+
+
+    }
+
+    #search-icon {
+        margin-top: 0.2rem;
+        font-size: 1.2rem;
+        color: white;
+
+
+    }
+
+    &:hover {
+        .search-button {
+
+            border-radius: 0px;
+            border-bottom-right-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        input {
+            border: 0.1rem solid $primary-color;
+            width: 13rem;
+
+        }
+    }
+}
