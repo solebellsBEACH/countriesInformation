@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  regionKeys = Object.keys(Regions);
+
   region: Regions = Regions.africa;
 
   countriesList$: Observable<Country[]>;
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   getCountries() {
-    this.store.dispatch(loadCountries({ region: this.region }));
+    this.store.dispatch(loadCountries());
   }
 
   handleFilterButton(regionKey: string) {
@@ -43,8 +43,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.route.snapshot.data)
-    combineLatest(this.loading$, this.error$).subscribe(([loading, error]) => {
+    combineLatest(this.loading$, this.error$).subscribe(([error]) => {
       this.showCountries = !error;
     });
     this.getCountries();

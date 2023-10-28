@@ -1,0 +1,6 @@
+<div class="filter-container">
+    <h1>Select the region</h1>
+    <section class="filter-grid">
+        <app-filter-button *ngFor="let regKey of regionKeys" [label]="regKey" [value]="region"></app-filter-button>
+    </section>
+</div>

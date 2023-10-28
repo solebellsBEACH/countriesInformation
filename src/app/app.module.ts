@@ -20,6 +20,7 @@ import { CountryEffects } from './store/country/country.effects';
 import { MapEmbedComponent } from './country-page/components/map-embed/map-embed.component';
 import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { FormContentComponent } from './home/components/form-content/form-content.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HeaderComponent } from './shared/components/header/header.component';
     ErrorStatusComponent,
     MapEmbedComponent,
     HeaderComponent,
+    FormContentComponent,
   ],
   imports: [
     BrowserModule,

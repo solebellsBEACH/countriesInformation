@@ -13,12 +13,8 @@
         lorem. In nisi lacus, eleifend tincidunt quam et, consequat semper.</p>
       <button (click)="goToMyGitProfile()">Go to my GitHub</button>
     </div>
-    <div class="filter-container">
-      <h1>Select the region</h1>
-      <section class="filter-grid">
-        <app-filter-button *ngFor="let regKey of regionKeys" [label]="regKey" [value]="region"
-          (onClick)="handleFilterButton(regKey)"></app-filter-button>
-      </section>
+    <app-form-content></app-form-content>
+    <div>
       <section class="countries-grid" *ngIf="showCountries">
         <app-country-item [country]="countryItem"
           *ngFor="let countryItem of (countriesList$ | async)"></app-country-item>

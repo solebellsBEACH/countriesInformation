@@ -18,6 +18,7 @@ export const appReducer = createReducer(
   on(appActions.loadCountriesSuccess, (state, { countriesList }) => ({
     ...state,
     countries: {
+      ...state.countries,
       data: { countriesList },
       loading: false,
       error: false,
