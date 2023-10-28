@@ -6,7 +6,6 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import * as fromAppActions from './app.actions';
 import { DataService } from '../../home/home.service';
 import { Country } from '../../shared/interfaces/responseBody';
-import { Regions } from 'src/app/shared/interfaces';
 
 @Injectable()
 export class AppEffects {
@@ -14,7 +13,7 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(fromAppActions.loadCountries),
       switchMap((props) =>
-        this.dataService.getDataByRegion(Regions.america).pipe(
+        this.dataService.getDataByRegion(props.region).pipe(
           map((data: Country[]) => {
             return fromAppActions.loadCountriesSuccess({ countriesList: data.slice(0, 20) });
           }),

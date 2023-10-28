@@ -33,19 +33,7 @@ export class HomeComponent implements OnInit {
     window.open(externalUrl, '_blank');
   }
 
-  getCountries() {
-    this.store.dispatch(loadCountries());
-  }
-
-  handleFilterButton(regionKey: string) {
-    this.region = regionKey as Regions;
-    this.getCountries();
-  }
-
   ngOnInit(): void {
-    combineLatest(this.loading$, this.error$).subscribe(([error]) => {
-      this.showCountries = !error;
-    });
-    this.getCountries();
+    this.store.dispatch(loadCountries({ region: this.region }));
   }
 }

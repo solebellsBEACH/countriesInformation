@@ -15,7 +15,7 @@
     </div>
     <app-form-content></app-form-content>
     <div>
-      <section class="countries-grid" *ngIf="showCountries">
+      <section class="countries-grid">
         <app-country-item [country]="countryItem"
           *ngFor="let countryItem of (countriesList$ | async)"></app-country-item>
       </section>

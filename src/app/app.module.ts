@@ -21,6 +21,7 @@ import { MapEmbedComponent } from './country-page/components/map-embed/map-embed
 import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FormContentComponent } from './home/components/form-content/form-content.component';
+import { AnimatedInputComponent } from './home/components/animated-input/animated-input.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FormContentComponent } from './home/components/form-content/form-conten
     MapEmbedComponent,
     HeaderComponent,
     FormContentComponent,
+    AnimatedInputComponent,
   ],
   imports: [
     BrowserModule,
