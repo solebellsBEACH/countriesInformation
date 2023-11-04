@@ -1,3 +1,4 @@
+import { Regions } from '.';
 import { Country } from './responseBody';
 
 export const DefaultStateInitialValue: IDefaultStateProps = {
@@ -25,11 +26,13 @@ export interface IDefaultStateProps {
 
 export interface ICountriesState extends IDefaultStateProps {
   data: { countriesList: Country[] };
+  region: Regions;
 }
 
 export const CountriesStateDefaultValue: ICountriesState = {
   ...DefaultStateInitialValue,
   data: { countriesList: [] },
+  region: Regions.africa
 };
 
 export interface ICountryPageState extends IDefaultStateProps {

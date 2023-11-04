@@ -7,7 +7,7 @@ export const initialState: AppState = AppStateInitialValue;
 
 export const appReducer = createReducer(
   initialState,
-  on(appActions.loadCountries, (state) => ({
+  on(appActions.loadCountriesByRegion, (state) => ({
     ...state,
     countries: {
       ...state.countries,
@@ -15,15 +15,16 @@ export const appReducer = createReducer(
       error: false,
     },
   })),
-  on(appActions.loadCountriesSuccess, (state, { countriesList }) => ({
+  on(appActions.loadCountriesByRegionSuccess, (state, { countriesList }) => ({
     ...state,
     countries: {
+      ...state.countries,
       data: { countriesList },
       loading: false,
       error: false,
     },
   })),
-  on(appActions.loadCountriesFailure, (state) => ({
+  on(appActions.loadCountriesByRegionFailure, (state) => ({
     ...state,
     countries: {
       ...state.countries,

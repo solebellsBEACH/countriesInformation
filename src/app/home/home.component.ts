@@ -4,7 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 import { IStore } from '../shared/interfaces/state';
-import { loadCountries } from '../store/app/app.actions';
+import { loadCountriesByRegion } from '../store/app/app.actions';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,19 +13,19 @@ import { loadCountries } from '../store/app/app.actions';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  regionKeys = Object.keys(Regions);
-  region: Regions = Regions.africa;
 
+  region$: Observable<Regions>
   countriesList$: Observable<Country[]>;
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
 
   showCountries = false;
 
-  constructor(private store: Store<IStore>) {
+  constructor(private store: Store<IStore>, private route: ActivatedRoute) {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
+    this.region$ = this.store.select((state) => state.app.countries.region);
   }
 
   goToMyGitProfile() {
@@ -32,19 +33,9 @@ export class HomeComponent implements OnInit {
     window.open(externalUrl, '_blank');
   }
 
-  getCountries() {
-    this.store.dispatch(loadCountries({ region: this.region }));
-  }
-
-  handleFilterButton(regionKey: string) {
-    this.region = regionKey as Regions;
-    this.getCountries();
-  }
-
   ngOnInit(): void {
-    combineLatest(this.loading$, this.error$).subscribe(([loading, error]) => {
-      this.showCountries = !error;
-    });
-    this.getCountries();
+    this.region$.subscribe(region => {
+      this.store.dispatch(loadCountriesByRegion({ region }));
+    })
   }
 }

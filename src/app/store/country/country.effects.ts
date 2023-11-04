@@ -24,8 +24,9 @@ export class CountryEffects {
     ),
   );
 
+
   constructor(
     private actions$: Actions,
     private dataService: DataService,
-  ) {}
+  ) { }
 }

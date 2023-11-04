@@ -19,6 +19,12 @@ import { ErrorStatusComponent } from './shared/components/error-status/error-sta
 import { CountryEffects } from './store/country/country.effects';
 import { MapEmbedComponent } from './country-page/components/map-embed/map-embed.component';
 import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FormContentComponent } from './home/components/form-content/form-content.component';
+import { AnimatedInputComponent } from './home/components/animated-input/animated-input.component';
+import { MatIconModule } from '@angular/material/icon';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,17 +37,22 @@ import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
     LoadingLetterComponent,
     ErrorStatusComponent,
     MapEmbedComponent,
+    HeaderComponent,
+    FormContentComponent,
+    AnimatedInputComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ app: appReducer, country: countryReducer }),
     EffectsModule.forRoot([AppEffects, CountryEffects]),
-
+    MatIconModule,
     NgLeafletUniversalModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
