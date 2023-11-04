@@ -13,7 +13,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        height: 2rem;
+        height: 3rem;
 
         border: none;
 
@@ -21,14 +21,14 @@
         border-top-left-radius: 5px;
 
         &:focus {
-            height: 2rem;
+            height: 3rem;
             outline: none
         }
     }
 
     .search-button {
-        max-height: 2.2rem;
-        padding: 0.3rem 0.5rem;
+        max-height: 3.2rem;
+        padding: 0.8rem 0.5rem;
         display: flex;
         justify-content: center;
         align-items: center;
