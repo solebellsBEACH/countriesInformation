@@ -14,8 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  region: Regions = Regions.africa;
-
+  region$: Observable<Regions>
   countriesList$: Observable<Country[]>;
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
@@ -26,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
+    this.region$ = this.store.select((state) => state.app.countries.region);
   }
 
   goToMyGitProfile() {
@@ -34,6 +34,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(loadCountries({ region: this.region }));
+    this.region$.subscribe(region => {
+      this.store.dispatch(loadCountries({ region }));
+    })
   }
 }

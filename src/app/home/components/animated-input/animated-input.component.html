@@ -1,6 +1,6 @@
 <div class="input-container">
-    <input type="text" name="country-name" id="" placeholder="Search by country name">
-    <button class="search-button" type="button">
+    <input type="text" name="country-name" id="" placeholder="Search by country name" [(ngModel)]="inputValue">
+    <button class="search-button" type="button" (click)="handleFilterButton()">
         <mat-icon aria-hidden="false" id="search-icon" fontIcon="search"></mat-icon>
     </button>
 </div>

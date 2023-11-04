@@ -13,6 +13,7 @@ import { loadCountries } from 'src/app/store/app/app.actions';
 export class FormContentComponent {
   regionKeys = Object.keys(Regions);
   @Input() region: Regions = Regions.africa;
+  inputValue: string = '';
 
   showRegionRadioButtons = false;
 
