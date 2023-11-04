@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable, combineLatest } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 import { IStore } from '../shared/interfaces/state';
-import { loadCountries } from '../store/app/app.actions';
+import { loadCountriesByRegion } from '../store/app/app.actions';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.region$.subscribe(region => {
-      this.store.dispatch(loadCountries({ region }));
+      this.store.dispatch(loadCountriesByRegion({ region }));
     })
   }
 }

@@ -1,5 +1,5 @@
 <form class="filter-container">
-    <div>
+    <div *ngIf="inputValue.length === 0">
         <h1>Select the region</h1>
         <section class="filter-grid">
             <app-filter-button *ngFor="let regKey of regionKeys" [label]="regKey" [value]="region"

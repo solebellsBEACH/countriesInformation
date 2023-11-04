@@ -9,15 +9,28 @@ import { Country } from '../../shared/interfaces/responseBody';
 
 @Injectable()
 export class AppEffects {
-  loadData$ = createEffect(() =>
+  loadDataByRegion$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(fromAppActions.loadCountries),
+      ofType(fromAppActions.loadCountriesByRegion),
       switchMap((props) =>
         this.dataService.getDataByRegion(props.region).pipe(
           map((data: Country[]) => {
-            return fromAppActions.loadCountriesSuccess({ countriesList: data.slice(0, 20) });
+            return fromAppActions.loadCountriesByRegionSuccess({ countriesList: data.slice(0, 20) });
           }),
-          catchError((error) => of(fromAppActions.loadCountriesFailure())),
+          catchError((error) => of(fromAppActions.loadCountriesByRegionFailure())),
+        ),
+      ),
+    ),
+  );
+  loadDataByName$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fromAppActions.loadCountriesByName),
+      switchMap((props) =>
+        this.dataService.getDataByName(props.name).pipe(
+          map((data: Country[]) => {
+            return fromAppActions.loadCountriesByNameSuccess({ countriesList: data.slice(0, 20) });
+          }),
+          catchError((error) => of(fromAppActions.loadCountriesByNameFailure())),
         ),
       ),
     ),

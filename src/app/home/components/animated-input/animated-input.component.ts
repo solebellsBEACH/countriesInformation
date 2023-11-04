@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IStore } from 'src/app/shared/interfaces/state';
+import { loadCountriesByName } from 'src/app/store/app/app.actions';
 
 @Component({
   selector: 'app-animated-input',
@@ -12,14 +13,11 @@ export class AnimatedInputComponent {
 
   constructor(private store: Store<IStore>) { }
 
-
-  // getCountries() {
-  //   this.store.dispatch(loadCountries({ region: this.region }));
-  // }
+  getCountries() {
+    this.store.dispatch(loadCountriesByName({ name: this.inputValue }));
+  }
 
   handleFilterButton() {
-    console.log(this.inputValue)
-    //   this.region = regionKey as Regions;
-    //   this.getCountries();
+    this.getCountries();
   }
 }

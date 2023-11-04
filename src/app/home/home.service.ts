@@ -12,8 +12,12 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getDataByRegion(region: Regions): Observable<any> {
-    console.log(region)
     const url = `${this.apiUrl}region/${region}`;
+    return this.http.get(url);
+  }
+
+  getDataByName(name: string): Observable<any> {
+    const url = `${this.apiUrl}name/${name}`;
     return this.http.get(url);
   }
 }

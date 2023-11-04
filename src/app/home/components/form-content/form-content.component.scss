@@ -1,3 +1,5 @@
+@import '../../../../variables.scss';
+
 .filter-container {
     transition: all 0.2s ease-in-out;
     margin-top: 4rem;
@@ -7,6 +9,14 @@
     flex-direction: row;
 
     justify-content: space-between;
+
+    @media screen and (max-width: 1026px) {
+        flex-direction: column-reverse;
+    }
+
+    border-bottom: 0.1rem solid $gray1;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .filter-grid {
@@ -15,7 +25,7 @@
     gap: 0.5rem 1rem;
     width: fit-content;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1026px) {
         grid-template-columns: auto auto auto auto;
     }
 

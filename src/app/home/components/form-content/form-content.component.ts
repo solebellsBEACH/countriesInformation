@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Regions } from 'src/app/shared/interfaces';
 import { IStore } from 'src/app/shared/interfaces/state';
-import { loadCountries } from 'src/app/store/app/app.actions';
+import { loadCountriesByRegion } from 'src/app/store/app/app.actions';
 
 
 @Component({
@@ -10,17 +10,17 @@ import { loadCountries } from 'src/app/store/app/app.actions';
   templateUrl: './form-content.component.html',
   styleUrls: ['./form-content.component.scss']
 })
-export class FormContentComponent {
+export class FormContentComponent implements OnChanges {
   regionKeys = Object.keys(Regions);
   @Input() region: Regions = Regions.africa;
   inputValue: string = '';
 
-  showRegionRadioButtons = false;
+  showRegionRadioButtons = true;
 
   constructor(private store: Store<IStore>) { }
 
   getCountries() {
-    this.store.dispatch(loadCountries({ region: this.region }));
+    this.store.dispatch(loadCountriesByRegion({ region: this.region }));
   }
 
   handleFilterButton(regionKey: string) {
@@ -28,4 +28,9 @@ export class FormContentComponent {
     this.getCountries();
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes["inputValue"]) {
+      console.log(this.inputValue)
+    }
+  }
 }
