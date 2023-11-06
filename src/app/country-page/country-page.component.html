@@ -1,11 +1,11 @@
+<app-header></app-header>
 <section>
-    <img [src]="imgSrc" alt="country-png">
-    <div class="content-rigth">
+    <img *ngIf="!(error$ | async)" [src]="imgSrc" alt="imageAlt">
+    <div class="content-rigth" *ngIf="!(error$ | async)">
         <h1>{{data?.name?.common}}</h1>
         <div class="content">
             <div class="about-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi non erat quam. Vestibulum aliquam nibh
-                    dui, et aliquet nibh euismod quis.</p>
+                <p>{{data?.flags?.alt}}</p>
                 <div>
                     <h2>
                         Population
@@ -34,16 +34,21 @@
                 <h5>Land Locked</h5>
                 <h6>{{data?.landlocked}}</h6>
             </div>
-            <p class="divider"></p>
-            <h5>
-                Area of {{data?.name?.common}} compared to russia
-            </h5>
-            <p>
-                Russia area {{russiaValue}} Km2
-            </p>
-            <div class="area-comparative">
-                <div class="inside-comparative" [style.width]="comparativePercent">{{data?.area}} KM</div>
+            <div class="field-content">
+                <h5>Country Area</h5>
+                <h6>{{data?.area}} km²</h6>
             </div>
+            <p class="divider"></p>
+            <div *ngIf="location; else loadingTemplate">
+                <app-map-embed [location]="location"></app-map-embed>
+            </div>
+
+            <ng-template #loadingTemplate>
+                <app-loading></app-loading>
+            </ng-template>
         </div>
     </div>
+
+    <app-loading-letter *ngIf="(loading$ | async)" [label]="'Loading your country... '"></app-loading-letter>
+    <app-error-status *ngIf="(error$ | async)"></app-error-status>
 </section>

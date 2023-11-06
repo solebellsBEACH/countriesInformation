@@ -9,12 +9,22 @@ import { FilterButtonComponent } from './home/components/filter-button/filter-bu
 import { CountryItemComponent } from './home/components/country-item/country-item.component';
 import { CountryPageComponent } from './country-page/country-page.component';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './store/app.reducer';
+import { appReducer } from './store/app/app.reducer';
+import { countryReducer } from './store/country/country.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { AppEffects } from './store/app.effects';
+import { AppEffects } from './store/app/app.effects';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { LoadingLetterComponent } from './shared/components/loading-letter/loading-letter.component';
 import { ErrorStatusComponent } from './shared/components/error-status/error-status.component';
+import { CountryEffects } from './store/country/country.effects';
+import { MapEmbedComponent } from './country-page/components/map-embed/map-embed.component';
+import { NgLeafletUniversalModule } from 'ng-leaflet-universal';
+import { HeaderComponent } from './shared/components/header/header.component';
+import { FormContentComponent } from './home/components/form-content/form-content.component';
+import { AnimatedInputComponent } from './home/components/animated-input/animated-input.component';
+import { MatIconModule } from '@angular/material/icon';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,16 +35,24 @@ import { ErrorStatusComponent } from './shared/components/error-status/error-sta
     CountryPageComponent,
     LoadingComponent,
     LoadingLetterComponent,
-    ErrorStatusComponent
+    ErrorStatusComponent,
+    MapEmbedComponent,
+    HeaderComponent,
+    FormContentComponent,
+    AnimatedInputComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ app: appReducer }),
-    EffectsModule.forRoot([AppEffects]),
+    StoreModule.forRoot({ app: appReducer, country: countryReducer }),
+    EffectsModule.forRoot([AppEffects, CountryEffects]),
+    MatIconModule,
+    NgLeafletUniversalModule,
+    NoopAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

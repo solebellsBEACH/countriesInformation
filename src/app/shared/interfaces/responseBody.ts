@@ -37,6 +37,7 @@ export type Country = {
   flags: {
     png: string;
     svg: string;
+    alt: string;
   };
   coatOfArms: {
     png: string;

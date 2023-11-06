@@ -6,6 +6,10 @@
 
 .content {
   padding: 4rem;
+
+  @media screen and (max-width:426px) {
+    padding: 1rem;
+  }
 }
 
 .carousel-container {
@@ -30,29 +34,6 @@
 
 }
 
-.filter-container {
-  margin-top: 4rem;
-  max-width: 100vw;
-}
-
-.filter-grid {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  gap: 0.5rem 1rem;
-  width: fit-content;
-
-  @media screen and (max-width: 768px) {
-    grid-template-columns: auto auto auto auto;
-  }
-
-  @media screen and (max-width: 600px) {
-    grid-template-columns: auto auto auto;
-  }
-
-  @media screen and (max-width: 500px) {
-    grid-template-columns: auto auto;
-  }
-}
 
 .countries-grid {
   display: grid;
