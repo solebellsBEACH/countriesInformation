@@ -25,6 +25,7 @@ import { AnimatedInputComponent } from './home/components/animated-input/animate
 import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FormContentComponent,
     AnimatedInputComponent,
+    AuthComponent,
   ],
   imports: [
     FormsModule,
