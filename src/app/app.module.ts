@@ -26,6 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputFieldComponent } from './auth/components/input-field/input-field.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { AuthComponent } from './auth/auth.component';
     FormContentComponent,
     AnimatedInputComponent,
     AuthComponent,
+    InputFieldComponent,
   ],
   imports: [
     FormsModule,
@@ -53,6 +56,7 @@ import { AuthComponent } from './auth/auth.component';
     MatIconModule,
     NgLeafletUniversalModule,
     NoopAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
