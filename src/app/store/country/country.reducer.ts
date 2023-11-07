@@ -1,7 +1,8 @@
 // app.reducer.ts
 import { createReducer, on } from '@ngrx/store';
 import * as countryActions from './country.actions';
-import { CountryPageInitialValue, CountryPageState } from 'src/app/shared/interfaces/state';
+import { CountryPageInitialValue } from 'src/app/shared/constants/state';
+import { CountryPageState } from 'src/app/shared/interfaces/state/countryPageState';
 
 export const initialState: CountryPageState = CountryPageInitialValue;
 
