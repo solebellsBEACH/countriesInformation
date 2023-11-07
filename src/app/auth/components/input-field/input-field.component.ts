@@ -9,8 +9,9 @@ import { FormGroup } from '@angular/forms';
 export class InputFieldComponent implements OnInit {
   @Input() name!: string;
   @Input() label!: string;
-  placeholder = 'Type your field'
   @Input() parentForm!: FormGroup;
+
+  placeholder = 'Type your field'
 
   ngOnInit(): void {
     console.log(this.name)

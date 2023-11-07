@@ -44,3 +44,21 @@ export type Country = {
     svg: string;
   };
 };
+
+
+export type GitHubUser = {
+  login: string;
+  id: number;
+  avatar_url: string | null;
+  html_url: string | null;
+  name: string | null;
+  company: string | null;
+  blog: string | null;
+  location: string | null;
+  email: string | null;
+  bio: string | null;
+  public_repos: number;
+  public_gists: number;
+  followers: number;
+  following: number;
+}

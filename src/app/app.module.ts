@@ -9,8 +9,6 @@ import { FilterButtonComponent } from './home/components/filter-button/filter-bu
 import { CountryItemComponent } from './home/components/country-item/country-item.component';
 import { CountryPageComponent } from './country-page/country-page.component';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './store/app/app.reducer';
-import { countryReducer } from './store/country/country.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app/app.effects';
 import { LoadingComponent } from './shared/components/loading/loading.component';
@@ -28,6 +26,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputFieldComponent } from './auth/components/input-field/input-field.component';
+import { rootStore } from './store';
+
 
 @NgModule({
   declarations: [
@@ -51,7 +51,7 @@ import { InputFieldComponent } from './auth/components/input-field/input-field.c
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ app: appReducer, country: countryReducer }),
+    StoreModule.forRoot(rootStore),
     EffectsModule.forRoot([AppEffects, CountryEffects]),
     MatIconModule,
     NgLeafletUniversalModule,
