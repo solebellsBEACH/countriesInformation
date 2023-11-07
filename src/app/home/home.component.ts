@@ -25,7 +25,10 @@ export class HomeComponent implements OnInit {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
-    this.region$ = this.store.select((state) => state.app.countries.region);
+    this.region$ = this.store.select((state) => {
+      console.log(state.auth.githubUser)
+      return state.app.countries.region
+    });
   }
 
   goToMyGitProfile() {

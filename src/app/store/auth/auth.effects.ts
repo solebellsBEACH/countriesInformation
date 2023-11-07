@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import * as fromCountryActions from './auth.actions';
 import { AuthDataService } from 'src/app/auth/auth.service';
+import { GitHubUser } from 'src/app/shared/interfaces/responseBody';
 
 @Injectable()
 export class AuthEffects {
@@ -13,9 +14,8 @@ export class AuthEffects {
             ofType(fromCountryActions.loadGitHubUser),
             switchMap((props: { username: string }) =>
                 this.dataService.getGithubUser(props.username).pipe(
-                    map((data: any) => {
-                        console.log(data)
-                        return fromCountryActions.loadGitHubUserSuccess({ user: null });
+                    map((data: GitHubUser) => {
+                        return fromCountryActions.loadGitHubUserSuccess({ user: data });
                     }),
                     catchError((error) => of(fromCountryActions.loadGitHubUserFailure())),
                 ),
