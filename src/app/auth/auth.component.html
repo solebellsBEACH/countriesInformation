@@ -2,8 +2,7 @@
     <section id="content">
         <form [formGroup]="authForm">
             <h1>Use your GitHub Account to auth</h1>
-            <app-input-field [name]="'username'" [label]="'Username'"></app-input-field>
-            <app-input-field [name]="'password'" [label]="'Password'"></app-input-field>
+            <app-input-field [name]="'username'" [label]="'Username'" [parentForm]="authForm"></app-input-field>
             <button id="submit-button" type="submit" (click)="onSubmit($event)">Save</button>
         </form>
     </section>

@@ -16,7 +16,6 @@ export class AuthComponent {
   createForm(loginForm: LoginForm): FormGroup {
     return this.formBuilder.group({
       username: [loginForm.username],
-      password: [loginForm.password],
     })
   }
 
