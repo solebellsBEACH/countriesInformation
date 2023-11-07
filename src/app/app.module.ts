@@ -27,6 +27,7 @@ import { AuthComponent } from './auth/auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputFieldComponent } from './auth/components/input-field/input-field.component';
 import { rootStore } from './store';
+import { AuthEffects } from './store/auth/auth.effects';
 
 
 @NgModule({
@@ -52,7 +53,7 @@ import { rootStore } from './store';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(rootStore),
-    EffectsModule.forRoot([AppEffects, CountryEffects]),
+    EffectsModule.forRoot([AppEffects, CountryEffects, AuthEffects]),
     MatIconModule,
     NgLeafletUniversalModule,
     NoopAnimationsModule,

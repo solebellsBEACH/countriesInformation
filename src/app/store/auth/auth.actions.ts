@@ -1,11 +1,10 @@
 // app.actions.ts
 import { createAction, props } from '@ngrx/store';
-import { Country } from '../../shared/interfaces/responseBody';
-import { Regions } from '../../shared/interfaces';
+import { GitHubUser } from '../../shared/interfaces/responseBody';
 
-export const loadCountriesByRegion = createAction('COUNTRIES_REQUEST', props<{ region: Regions }>());
-export const loadCountriesByRegionSuccess = createAction(
-  'COUNTRIES_SUCCESS',
-  props<{ countriesList: Country[] }>(),
+export const loadGitHubUser = createAction('GITHUB_USER_REQUEST', props<{ username: string }>());
+export const loadGitHubUserSuccess = createAction(
+  'GITHUB_USER_SUCCESS',
+  props<{ user: GitHubUser | null }>(),
 );
-export const loadCountriesByRegionFailure = createAction('COUNTRIES_FAIL');
+export const loadGitHubUserFailure = createAction('GITHUB_USER_FAIL');
