@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-input-field',
@@ -7,13 +6,12 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./input-field.component.scss']
 })
 export class InputFieldComponent implements OnInit {
-  fieldControl = new FormControl({
-    value: '',
-    disabled: false
-  });
-
+  @Input() name!: string;
+  @Input() label!: string;
+  placeholder = 'Type your field'
 
   ngOnInit(): void {
-    console.log(this.fieldControl)
+    console.log(this.name)
+    this.placeholder = 'Type your ' + (this.name || 'field')
   }
 }
