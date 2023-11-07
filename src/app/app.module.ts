@@ -28,6 +28,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { InputFieldComponent } from './auth/components/input-field/input-field.component';
 import { rootStore } from './store';
 import { AuthEffects } from './store/auth/auth.effects';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -58,6 +61,8 @@ import { AuthEffects } from './store/auth/auth.effects';
     NgLeafletUniversalModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

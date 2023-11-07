@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 import { IStore } from '../shared/interfaces/state';
 import { loadCountriesByRegion } from '../store/app/app.actions';
