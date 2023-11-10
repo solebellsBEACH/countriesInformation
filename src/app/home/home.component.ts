@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 import { IStore } from '../shared/interfaces/state';
 import { loadCountriesByRegion } from '../store/app/app.actions';
@@ -25,7 +25,10 @@ export class HomeComponent implements OnInit {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
-    this.region$ = this.store.select((state) => state.app.countries.region);
+    this.region$ = this.store.select((state) => {
+      console.log(state.auth.githubUser)
+      return state.app.countries.region
+    });
   }
 
   goToMyGitProfile() {

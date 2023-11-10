@@ -9,8 +9,6 @@ import { FilterButtonComponent } from './home/components/filter-button/filter-bu
 import { CountryItemComponent } from './home/components/country-item/country-item.component';
 import { CountryPageComponent } from './country-page/country-page.component';
 import { StoreModule } from '@ngrx/store';
-import { appReducer } from './store/app/app.reducer';
-import { countryReducer } from './store/country/country.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AppEffects } from './store/app/app.effects';
 import { LoadingComponent } from './shared/components/loading/loading.component';
@@ -25,6 +23,15 @@ import { AnimatedInputComponent } from './home/components/animated-input/animate
 import { MatIconModule } from '@angular/material/icon';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { AuthComponent } from './auth/auth.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { InputFieldComponent } from './auth/components/input-field/input-field.component';
+import { rootStore } from './store';
+import { AuthEffects } from './store/auth/auth.effects';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -40,17 +47,22 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FormContentComponent,
     AnimatedInputComponent,
+    AuthComponent,
+    InputFieldComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ app: appReducer, country: countryReducer }),
-    EffectsModule.forRoot([AppEffects, CountryEffects]),
+    StoreModule.forRoot(rootStore),
+    EffectsModule.forRoot([AppEffects, CountryEffects, AuthEffects]),
     MatIconModule,
     NgLeafletUniversalModule,
     NoopAnimationsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
