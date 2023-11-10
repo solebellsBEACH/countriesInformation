@@ -8,6 +8,7 @@ import { loadGitHubUser } from '../store/auth/auth.actions';
 import { ToastrService } from 'ngx-toastr';
 import { ToastrHelpers } from '../shared/helpers/toast';
 import { Router } from '@angular/router';
+import { StorageHelpers } from '../shared/helpers/storage';
 
 @Component({
   selector: 'app-auth',
@@ -34,10 +35,11 @@ export class AuthComponent implements OnInit {
   onSubmit(e: any): void {
     e.preventDefault();
     if (this.authForm.value.username) this.store.dispatch(loadGitHubUser({ username: this.authForm.value.username }));
-    else return
+    else return ToastrHelpers.showError(this.toastr, 'You dont can send a empty field !');
 
     this.error$.subscribe(err => {
-      if (!err) this.router.navigate(['/home']);
+      if (err) return
+      if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this.router.navigate(['/home'])
     })
   }
 

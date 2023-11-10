@@ -5,7 +5,7 @@ import { CountryPageComponent } from './country-page/country-page.component';
 import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'country/:pathName', component: CountryPageComponent },
   { path: 'home', component: HomeComponent },
   { path: 'auth', component: AuthComponent },
