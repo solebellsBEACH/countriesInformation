@@ -26,6 +26,9 @@ export class AuthComponent implements OnInit {
     this.error$ = this.store.select((state) => state.auth.githubUser.error);
   }
 
+  navigateToHome() {
+    this.router.navigate(['/home'])
+  }
   createForm(loginForm: LoginForm): FormGroup {
     return this.formBuilder.group({
       username: [loginForm.username],
@@ -39,11 +42,12 @@ export class AuthComponent implements OnInit {
 
     this.error$.subscribe(err => {
       if (err) return
-      if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this.router.navigate(['/home'])
+      if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this.navigateToHome()
     })
   }
 
   ngOnInit(): void {
+    if (StorageHelpers.alreadyIsLogged()) this.navigateToHome()
     this.error$.subscribe(error => {
       if (error) ToastrHelpers.showError(this.toastr, 'GitHub Account not founded!! Try again later.');
     })

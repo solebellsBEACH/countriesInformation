@@ -24,7 +24,23 @@ const getLocalStorage = (key: string) => {
     }
 }
 
+const alreadyIsLogged = () => {
+    const key = 'username'
+    try {
+        const data = localStorage.getItem(`countriesInformations/${key}`)
+        if (data) return { success: true, data }
+        throw new Error(`countriesInformations/${key} not founded on website local storage`);
+    } catch (error: any) {
+        return {
+            success: false,
+            error
+        }
+    }
+}
+
+
 export const StorageHelpers = {
     setLocalStorage,
-    getLocalStorage
+    getLocalStorage,
+    alreadyIsLogged
 }
