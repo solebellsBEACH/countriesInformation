@@ -5,8 +5,10 @@ import { Observable } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 import { IStore } from '../shared/interfaces/state';
 import { loadCountriesByRegion } from '../store/app/app.actions';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { StorageHelpers } from '../shared/helpers/storage';
+import { ToastrHelpers } from '../shared/helpers/toast';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -19,11 +21,11 @@ export class HomeComponent implements OnInit {
   countriesList$: Observable<Country[]>;
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
-  githubLabel: string = 'solebellsBEACH'
+  githubLabel: string = 'UserNotFounded'
 
   showCountries = false;
 
-  constructor(private store: Store<IStore>, private router: Router) {
+  constructor(private store: Store<IStore>, private router: Router, private toastr: ToastrService) {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
@@ -35,17 +37,22 @@ export class HomeComponent implements OnInit {
     window.open(externalUrl, '_blank');
   }
 
+  handleLogout() {
+    if (StorageHelpers.removeItemLocalStorage('username').success) {
+      this.router.navigate(['/auth'])
+    } else ToastrHelpers.showError(this.toastr, 'Error to logout!');
+  }
+
   ngOnInit(): void {
-
     const isLogged = StorageHelpers.alreadyIsLogged()
-
     if (isLogged.success) {
-      this.githubLabel = isLogged?.data || 'solebellsBEACH'
+      this.githubLabel = isLogged?.data || 'UserNotFounded'
       this.region$.subscribe(region => {
         this.store.dispatch(loadCountriesByRegion({ region }));
       })
+      ToastrHelpers.showSuccess(this.toastr, `Hello ${this.githubLabel}`);
     } else {
-      this.router.navigate(['/home'])
+      this.router.navigate(['/auth'])
     }
   }
 }

@@ -5,7 +5,7 @@ function showError(toastr: ToastrService, label?: string) {
 }
 
 function showSuccess(toastr: ToastrService, label?: string) {
-    toastr.success((label || 'Operation completed successfully!'), 'Erro');
+    toastr.success((label || 'Operation completed successfully!'), 'Success');
 }
 
 export const ToastrHelpers = {

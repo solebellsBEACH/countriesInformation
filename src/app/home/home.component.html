@@ -8,7 +8,8 @@
     <div class="intro-container">
       <div id="github-label-content">
         <h3 id="github-label">{{githubLabel}}</h3>
-        <button><mat-icon aria-hidden="false" id="search-icon" fontIcon="close"></mat-icon>
+        <button (click)="handleLogout()">
+          <mat-icon aria-hidden="false" id="search-icon" fontIcon="close"></mat-icon>
           <p>Logout</p>
         </button>
       </div>

@@ -47,7 +47,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (StorageHelpers.alreadyIsLogged()) this.navigateToHome()
+    if (StorageHelpers.alreadyIsLogged().success) this.navigateToHome()
     this.error$.subscribe(error => {
       if (error) ToastrHelpers.showError(this.toastr, 'GitHub Account not founded!! Try again later.');
     })
