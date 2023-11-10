@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 import { Regions } from '../shared/interfaces';
 import { IStore } from '../shared/interfaces/state';
 import { loadCountriesByRegion } from '../store/app/app.actions';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StorageHelpers } from '../shared/helpers/storage';
 
 @Component({
   selector: 'app-home',
@@ -18,17 +19,15 @@ export class HomeComponent implements OnInit {
   countriesList$: Observable<Country[]>;
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
+  githubLabel: string = 'solebellsBEACH'
 
   showCountries = false;
 
-  constructor(private store: Store<IStore>, private route: ActivatedRoute) {
+  constructor(private store: Store<IStore>, private router: Router) {
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
-    this.region$ = this.store.select((state) => {
-      console.log(state.auth.githubUser)
-      return state.app.countries.region
-    });
+    this.region$ = this.store.select((state) => state.app.countries.region);
   }
 
   goToMyGitProfile() {
@@ -37,8 +36,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.region$.subscribe(region => {
-      this.store.dispatch(loadCountriesByRegion({ region }));
-    })
+
+    const isLogged = StorageHelpers.alreadyIsLogged()
+
+    if (isLogged.success) {
+      this.githubLabel = isLogged?.data || 'solebellsBEACH'
+      this.region$.subscribe(region => {
+        this.store.dispatch(loadCountriesByRegion({ region }));
+      })
+    } else {
+      this.router.navigate(['/home'])
+    }
   }
 }
