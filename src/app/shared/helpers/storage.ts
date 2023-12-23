@@ -24,6 +24,17 @@ const getLocalStorage = (key: string) => {
     }
 }
 
+const removeItemLocalStorage = (key: string) => {
+    try {
+        localStorage.removeItem(`countriesInformations/${key}`)
+        return { success: true }
+    } catch (error: any) {
+        return {
+            success: false,
+            error
+        }
+    }
+}
 const alreadyIsLogged = () => {
     const key = 'username'
     try {
@@ -42,5 +53,6 @@ const alreadyIsLogged = () => {
 export const StorageHelpers = {
     setLocalStorage,
     getLocalStorage,
-    alreadyIsLogged
+    alreadyIsLogged,
+    removeItemLocalStorage
 }

@@ -24,6 +24,42 @@
   filter: grayscale(1);
 }
 
+#github-label-content {
+  display: flex;
+  align-items: center;
+
+  button {
+    transition: all 0.2s ease-in-out;
+    padding: 0.2rem;
+    border-radius: 5px;
+    background-color: $primary-color;
+    border: none;
+    color: aliceblue;
+
+    p {
+      transition: all 0.2s ease-in-out;
+      padding: none;
+      font-size: 0px;
+      color: aliceblue;
+    }
+
+    &:hover {
+      background-color: $danger;
+
+      @media (min-width:426px) {
+        padding: 0.4rem;
+
+        p {
+          margin-left: 0.2rem;
+
+          font-size: 1rem;
+        }
+      }
+    }
+
+  }
+}
+
 #github-label {
   color: $primary-color;
   /* H3 SemiBold */
@@ -31,6 +67,8 @@
   font-style: normal;
   font-weight: 600;
   font-size: 2rem;
+
+  margin-right: 1rem;
 
 }
 

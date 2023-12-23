@@ -6,7 +6,13 @@
   </div>
   <section class="content">
     <div class="intro-container">
-      <h3 id="github-label">solebellsBEACH</h3>
+      <div id="github-label-content">
+        <h3 id="github-label">{{githubLabel}}</h3>
+        <button (click)="handleLogout()">
+          <mat-icon aria-hidden="false" id="search-icon" fontIcon="close"></mat-icon>
+          <p>Logout</p>
+        </button>
+      </div>
       <h1>Learning Angular
         with free countries API</h1>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut magna, scelerisque vitae augue et, cursus placerat
