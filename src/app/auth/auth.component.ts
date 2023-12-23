@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ToastrHelpers } from '../shared/helpers/toast';
 import { Router } from '@angular/router';
 import { StorageHelpers } from '../shared/helpers/storage';
+import { navigateHelpers } from '../shared/helpers/navigate';
 
 @Component({
   selector: 'app-auth',
@@ -27,10 +28,11 @@ export class AuthComponent implements OnInit {
     this.loading$ = this.store.select((state) => state.auth.githubUser.loading);
     this.error$ = this.store.select((state) => state.auth.githubUser.error);
   }
-  // TODO: CAN BE A GLOBAL HELPER
-  navigateToHome() {
-    this.router.navigate(['/home'])
+
+  private _navigateToHome() {
+    navigateHelpers.navigate(this.router, '/home')
   }
+
   createForm(loginForm: LoginForm): FormGroup {
     return this.formBuilder.group({
       username: [loginForm.username],
@@ -45,12 +47,12 @@ export class AuthComponent implements OnInit {
 
     this.error$.subscribe(err => {
       if (err) return
-      if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this.navigateToHome()
+      if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this._navigateToHome()
     })
   }
 
   ngOnInit(): void {
-    if (StorageHelpers.alreadyIsLogged().success) this.navigateToHome()
+    if (StorageHelpers.alreadyIsLogged().success) this._navigateToHome()
     this.error$.subscribe(error => {
       if (error) ToastrHelpers.showError(this.toastr, 'GitHub Account not founded!! Try again later.');
     })

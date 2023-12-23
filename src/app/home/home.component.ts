@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { StorageHelpers } from '../shared/helpers/storage';
 import { ToastrHelpers } from '../shared/helpers/toast';
 import { ToastrService } from 'ngx-toastr';
+import { navigateHelpers } from '../shared/helpers/navigate';
 
 @Component({
   selector: 'app-home',
@@ -38,8 +39,12 @@ export class HomeComponent implements OnInit {
     window.open(externalUrl, '_blank');
   }
 
+  private _navigateToAuth() {
+    navigateHelpers.navigate(this.router, '/auth')
+  }
+
   handleLogout() {
-    if (StorageHelpers.removeItemLocalStorage('username').success) this.router.navigate(['/auth'])
+    if (StorageHelpers.removeItemLocalStorage('username').success) this._navigateToAuth()
   }
 
   ngOnInit(): void {
@@ -52,7 +57,7 @@ export class HomeComponent implements OnInit {
       })
       ToastrHelpers.showSuccess(this.toastr, `Hello ${this.githubLabel}`);
     } else {
-      this.router.navigate(['/auth'])
+      this._navigateToAuth()
     }
   }
 }
