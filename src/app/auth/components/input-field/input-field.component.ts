@@ -12,7 +12,7 @@ export class InputFieldComponent implements OnInit {
   @Input() parentForm!: FormGroup;
 
   placeholder = 'Type your field'
-
+  // TODO: CREATE UNIT TESTS
   ngOnInit(): void {
     console.log(this.name)
     this.placeholder = 'Type your ' + (this.name || 'field')

@@ -15,6 +15,7 @@ export class MapEmbedComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit() {
+    // TODO: CREATE UNIT TESTS
     if (this.mapComponent && this.location) {
       const marker: Marker = {
         id: 'country-location',

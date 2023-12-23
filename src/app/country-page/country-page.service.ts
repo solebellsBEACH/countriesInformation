@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class DataService {
   private apiUrl = 'https://restcountries.com/v3.1/';
 
-  constructor(private http: HttpClient) {}
-
+  constructor(private http: HttpClient) { }
+  // TODO: create unit test to this service && move to service folder
   getCountry(pathName: string): Observable<any> {
     const url = `${this.apiUrl}name/${pathName}`;
     return this.http.get(url);

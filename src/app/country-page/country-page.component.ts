@@ -27,10 +27,13 @@ export class CountryPageComponent {
     private route: ActivatedRoute,
     private store: Store<IStore>,
   ) {
+    // TODO: CREATE SELECTOR TO ALL THE STORES BELOW
+
     this.loading$ = this.store.select((state) => state.country.countryPage.loading);
     this.error$ = this.store.select((state) => state.country.countryPage.error);
     this.data$ = this.store.select((state) => state.country.countryPage.data.country);
     this.data$.subscribe((country) => {
+      // TODO: CREATE A PRIVATE FUNCTION TO ARROW FUNCTION BELOW
       this.imgSrc = country?.coatOfArms.png || country?.flags.png || '';
       this.data = country;
       this.imageAlt = `This image is a flag/coat of arms from ${country?.name || 'page country'}`;

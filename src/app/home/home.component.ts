@@ -22,11 +22,11 @@ export class HomeComponent implements OnInit {
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
 
-
   githubLabel: string = 'UserNotFounded'
   showCountries = false;
 
   constructor(private store: Store<IStore>, private router: Router, private toastr: ToastrService) {
+    // TODO: create selector for all the store below
     this.countriesList$ = this.store.select((state) => state.app.countries.data.countriesList);
     this.loading$ = this.store.select((state) => state.app.countries.loading);
     this.error$ = this.store.select((state) => state.app.countries.error);
@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
     const isLogged = StorageHelpers.alreadyIsLogged()
     if (isLogged.success) {
       this.githubLabel = isLogged?.data || 'UserNotFounded'
+      // TODO: tranform in private function 
       this.region$.subscribe(region => {
         this.store.dispatch(loadCountriesByRegion({ region }));
       })
