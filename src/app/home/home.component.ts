@@ -21,8 +21,9 @@ export class HomeComponent implements OnInit {
   countriesList$: Observable<Country[]>;
   loading$: Observable<boolean>;
   error$: Observable<boolean>;
-  githubLabel: string = 'UserNotFounded'
 
+
+  githubLabel: string = 'UserNotFounded'
   showCountries = false;
 
   constructor(private store: Store<IStore>, private router: Router, private toastr: ToastrService) {
@@ -38,9 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   handleLogout() {
-    if (StorageHelpers.removeItemLocalStorage('username').success) {
-      this.router.navigate(['/auth'])
-    } else ToastrHelpers.showError(this.toastr, 'Error to logout!');
+    if (StorageHelpers.removeItemLocalStorage('username').success) this.router.navigate(['/auth'])
   }
 
   ngOnInit(): void {
