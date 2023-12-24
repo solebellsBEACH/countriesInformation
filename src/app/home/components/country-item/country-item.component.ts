@@ -16,7 +16,6 @@ export class CountryItemComponent {
 
   ngOnChanges() {
     if (this.country) {
-      // TODO: CREATE A PRIVATE FUNCTION
       const { name, flags, capital, subregion } = this.country;
       this.flag = flags.png;
       this.name = name.common;
