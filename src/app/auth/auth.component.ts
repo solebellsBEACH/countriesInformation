@@ -22,8 +22,6 @@ export class AuthComponent implements OnInit {
   authForm: FormGroup;
   githubUserData$: Observable<IGitHubUserState>;
 
-  // TODO: CREATE ALL THE SELECTORS 
-
   constructor(private store: Store<IStore>, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) {
     this.authForm = this.createForm(new LoginForm());
     this.githubUserData$ = this.store.select(selectAuthGithubUser);
