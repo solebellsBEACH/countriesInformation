@@ -1,7 +1,8 @@
 <app-header></app-header>
 <section>
-    {{imageAlt}}
-    <img *ngIf="!((countryPageState$ | async)?.error)" [src]="imgSrc" alt="imageAlt">
+    <img *ngIf="!((countryPageState$ | async)?.error)"
+        [src]="(countryPageData$|async)?.coatOfArms?.png || (countryPageData$|async)?.flags?.png || ''"
+        alt="`This image is a flag/coat of arms from ${(countryPageData$|async)?.name.common || 'page country'}`">
     <div class="content-rigth" *ngIf="!((countryPageState$ | async)?.error)">
         <h1>{{(countryPageData$|async)?.name?.common}}</h1>
         <div class="content">
@@ -40,8 +41,8 @@
                 <h6>{{(countryPageData$|async)?.area}} km²</h6>
             </div>
             <p class="divider"></p>
-            <div *ngIf="location; else loadingTemplate">
-                <app-map-embed [location]="location"></app-map-embed>
+            <div *ngIf="countryLocation$|async; else loadingTemplate">
+                <app-map-embed [location]="countryLocation$|async"></app-map-embed>
             </div>
 
             <ng-template #loadingTemplate>

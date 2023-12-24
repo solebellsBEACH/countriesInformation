@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
 import { loadCountryPage } from '../store/country/country.actions';
 import { IStore } from '../shared/interfaces/state';
 import { ILocation } from '../shared/interfaces';
 import { ICountryPageState } from '../shared/interfaces/state/countryPageState';
-import { selectCountryPageData, selectCountryPageState } from '../store/country/country.selectors';
+import { selectCountryLocation, selectCountryPageData, selectCountryPageState } from '../store/country/country.selectors';
 
 @Component({
   selector: 'app-country-page',
@@ -16,13 +16,10 @@ import { selectCountryPageData, selectCountryPageState } from '../store/country/
 })
 export class CountryPageComponent {
   pathName: string | null = null;
-  data: Country | null = null;
-  imgSrc = '';
-  imageAlt = '';
-  location?: ILocation = undefined;
 
   countryPageState$: Observable<ICountryPageState>
   countryPageData$: Observable<Country | null>
+  countryLocation$: Observable<ILocation | null>
 
   constructor(
     private route: ActivatedRoute,
@@ -30,25 +27,13 @@ export class CountryPageComponent {
   ) {
     this.countryPageState$ = this.store.select(selectCountryPageState);
     this.countryPageData$ = this.store.select(selectCountryPageData);
-    this.countryPageData$.subscribe(this._formatCountryData);
+    this.countryLocation$ = this.store.select(selectCountryLocation);
   }
 
   ngOnInit(): void {
     this.pathName = this.route.snapshot.paramMap.get('pathName');
     if (!this.pathName) alert('Not Found pathName');
     else this.getCountry(this.pathName);
-  }
-
-  private _formatCountryData(country: Country | null) {
-
-    this.imgSrc = country?.coatOfArms.png || country?.flags.png || '';
-    this.imageAlt = `This image is a flag/coat of arms from ${country?.name.common || 'page country'}`;
-
-    if (country?.latlng)
-      this.location = {
-        latitude: country.latlng[0],
-        longitude: country.latlng[1],
-      };
   }
 
   getCountry(pathName: string) {
