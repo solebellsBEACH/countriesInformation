@@ -10,6 +10,7 @@ export class InputFieldComponent implements OnInit {
   @Input() name!: string;
   @Input() label!: string;
   @Input() parentForm!: FormGroup;
+  @Input() highlightError?: boolean;
 
   placeholder = 'Type your field'
   // TODO: CREATE UNIT TESTS

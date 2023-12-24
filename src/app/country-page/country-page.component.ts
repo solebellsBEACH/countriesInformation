@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import { loadCountryPage } from '../store/country/country.actions';
 import { IStore } from '../shared/interfaces/state';
 import { ILocation } from '../shared/interfaces';
+import { ICountryPageState } from '../shared/interfaces/state/countryPageState';
+import { selectCountryLocation, selectCountryPageData, selectCountryPageState } from '../store/country/country.selectors';
 
 @Component({
   selector: 'app-country-page',
@@ -14,44 +16,28 @@ import { ILocation } from '../shared/interfaces';
 })
 export class CountryPageComponent {
   pathName: string | null = null;
-  data: Country | null = null;
-  imgSrc = '';
-  imageAlt = '';
 
-  location?: ILocation = undefined;
-  loading$: Observable<boolean>;
-  data$: Observable<Country | null>;
-  error$: Observable<boolean>;
+  countryPageState$: Observable<ICountryPageState>
+  countryPageData$: Observable<Country | null>
+  countryLocation$: Observable<ILocation | null>
 
   constructor(
     private route: ActivatedRoute,
     private store: Store<IStore>,
   ) {
-    // TODO: CREATE SELECTOR TO ALL THE STORES BELOW
-
-    this.loading$ = this.store.select((state) => state.country.countryPage.loading);
-    this.error$ = this.store.select((state) => state.country.countryPage.error);
-    this.data$ = this.store.select((state) => state.country.countryPage.data.country);
-    this.data$.subscribe((country) => {
-      // TODO: CREATE A PRIVATE FUNCTION TO ARROW FUNCTION BELOW
-      this.imgSrc = country?.coatOfArms.png || country?.flags.png || '';
-      this.data = country;
-      this.imageAlt = `This image is a flag/coat of arms from ${country?.name || 'page country'}`;
-
-      if (country?.latlng)
-        this.location = {
-          latitude: country.latlng[0],
-          longitude: country.latlng[1],
-        };
-    });
+    this.countryPageState$ = this.store.select(selectCountryPageState);
+    this.countryPageData$ = this.store.select(selectCountryPageData);
+    this.countryLocation$ = this.store.select(selectCountryLocation);
   }
 
-  getCountry(pathName: string) {
-    this.store.dispatch(loadCountryPage({ pathName }));
-  }
   ngOnInit(): void {
     this.pathName = this.route.snapshot.paramMap.get('pathName');
     if (!this.pathName) alert('Not Found pathName');
     else this.getCountry(this.pathName);
   }
+
+  getCountry(pathName: string) {
+    this.store.dispatch(loadCountryPage({ pathName }));
+  }
+
 }

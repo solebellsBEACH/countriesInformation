@@ -10,7 +10,7 @@ import { ILocation } from 'src/app/shared/interfaces';
 })
 export class MapEmbedComponent implements AfterViewInit {
   @ViewChild(MapComponent) mapComponent!: MapComponent;
-  @Input() location?: ILocation;
+  @Input() location?: ILocation | null;
 
   constructor() { }
 
