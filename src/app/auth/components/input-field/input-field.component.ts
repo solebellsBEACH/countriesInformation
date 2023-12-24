@@ -15,7 +15,6 @@ export class InputFieldComponent implements OnInit {
   placeholder = 'Type your field'
   // TODO: CREATE UNIT TESTS
   ngOnInit(): void {
-    console.log(this.name)
     this.placeholder = 'Type your ' + (this.name || 'field')
   }
 }

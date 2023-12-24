@@ -25,6 +25,8 @@ export class AuthComponent implements OnInit {
 
   githubUserData$: Observable<IGitHubUserState>;
 
+  // TODO: CREATE UNIT TESTS
+
   constructor(private store: Store<IStore>, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) {
     this.githubUserData$ = this.store.select(selectAuthGithubUser);
   }
