@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import * as fromAppActions from './app.actions';
-import { DataService } from '../../home/home.service';
+import { DataService } from '../../services/HomeServices/home.service';
 import { Country } from '../../shared/interfaces/responseBody';
 
 @Injectable()

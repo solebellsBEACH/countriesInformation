@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import * as fromCountryActions from './country.actions';
 import { Country } from '../../shared/interfaces/responseBody';
-import { DataService } from 'src/app/country-page/country-page.service';
+import { DataService } from 'src/app/services/CountryPageServices/country-page.service';
 
 @Injectable()
 export class CountryEffects {
