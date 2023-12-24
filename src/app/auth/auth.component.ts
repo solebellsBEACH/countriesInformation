@@ -10,6 +10,7 @@ import { StorageHelpers } from '../shared/helpers/storage';
 import { navigateHelpers } from '../shared/helpers/navigate';
 import { IGitHubUserState } from '../shared/interfaces/state/authState';
 import { selectAuthGithubUser } from '../store/auth/auth.selectors';
+import { loadGitHubUser } from '../store/auth/auth.actions';
 
 @Component({
   selector: 'app-auth',
@@ -59,19 +60,16 @@ export class AuthComponent implements OnInit {
     }
   }
 
-
   onSubmit(e: MouseEvent): void {
     e.preventDefault();
-    if (this.username?.valid) { }
+    if (this.username?.valid) {
+      this.store.dispatch(loadGitHubUser({ username: this.authForm.value.username }));
+      this.githubUserData$.subscribe(data => {
+        if (data.error) return
+        if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this._navigateToHome()
+      }).unsubscribe()
+    }
     else this._showSubmitToastError(this.authForm, "username")
-    // TODO: CREATE VALIDATORS TO THIS FORM
-    // if (this.authForm.value.username) this.store.dispatch(loadGitHubUser({ username: this.authForm.value.username }));
-    // else return ToastrHelpers.showError(this.toastr, 'You dont can send a empty field !');
-
-    // this.githubUserData$.subscribe(data => {
-    //   if (data.error) return
-    //   if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this._navigateToHome()
-    // }).unsubscribe()
   }
 
 }
