@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import { loadCountryPage } from '../store/country/country.actions';
 import { IStore } from '../shared/interfaces/state';
 import { ILocation } from '../shared/interfaces';
+import { ICountryPageState } from '../shared/interfaces/state/countryPageState';
+import { selectCountryPage } from '../store/country/country.selectors';
 
 @Component({
   selector: 'app-country-page',
@@ -17,33 +19,29 @@ export class CountryPageComponent {
   data: Country | null = null;
   imgSrc = '';
   imageAlt = '';
-
   location?: ILocation = undefined;
-  loading$: Observable<boolean>;
-  data$: Observable<Country | null>;
-  error$: Observable<boolean>;
+
+  countryPageData$: Observable<ICountryPageState>
 
   constructor(
     private route: ActivatedRoute,
     private store: Store<IStore>,
   ) {
-    // TODO: CREATE SELECTOR TO ALL THE STORES BELOW
+    this.countryPageData$ = this.store.select(selectCountryPage);
+    this.countryPageData$.subscribe(this._formatCountryData).unsubscribe();
+  }
 
-    this.loading$ = this.store.select((state) => state.country.countryPage.loading);
-    this.error$ = this.store.select((state) => state.country.countryPage.error);
-    this.data$ = this.store.select((state) => state.country.countryPage.data.country);
-    this.data$.subscribe((country) => {
-      // TODO: CREATE A PRIVATE FUNCTION TO ARROW FUNCTION BELOW
-      this.imgSrc = country?.coatOfArms.png || country?.flags.png || '';
-      this.data = country;
-      this.imageAlt = `This image is a flag/coat of arms from ${country?.name || 'page country'}`;
+  private _formatCountryData(countryData: ICountryPageState) {
+    const { country } = countryData.data
+    this.imgSrc = country?.coatOfArms.png || country?.flags.png || '';
+    this.data = country;
+    this.imageAlt = `This image is a flag/coat of arms from ${country?.name || 'page country'}`;
 
-      if (country?.latlng)
-        this.location = {
-          latitude: country.latlng[0],
-          longitude: country.latlng[1],
-        };
-    }).unsubscribe();
+    if (country?.latlng)
+      this.location = {
+        latitude: country.latlng[0],
+        longitude: country.latlng[1],
+      };
   }
 
   getCountry(pathName: string) {

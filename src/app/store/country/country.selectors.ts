@@ -6,5 +6,5 @@ export const selectCountryPageFeature = createFeatureSelector<CountryPageState>(
 
 export const selectCountryPage = createSelector(
     selectCountryPageFeature,
-    (state: CountryPageState) => state
+    (state: CountryPageState) => state.countryPage
 );
