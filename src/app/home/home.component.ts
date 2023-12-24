@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { IStore } from '../shared/interfaces/state';
 import { loadCountriesByRegion } from '../store/app/app.actions';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { navigateHelpers } from '../shared/helpers/navigate';
 import { ICountriesState } from '../shared/interfaces/state/appState';
 import { selectAppCountriesList, selectAppCountryData } from '../store/app/app.selectors';
+
 
 @Component({
   selector: 'app-home',
@@ -40,9 +41,11 @@ export class HomeComponent implements OnInit {
   }
 
   private _getCountriesByRegion() {
-    this.countriesData$.subscribe(data => {
+    this.countriesData$.pipe(
+      take(1)
+    ).subscribe(data => {
       this.store.dispatch(loadCountriesByRegion({ region: data.region }));
-    }).unsubscribe();
+    });
   }
 
   private _navigateToAuth() {

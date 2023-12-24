@@ -1,17 +1,18 @@
 <app-header></app-header>
 <section>
-    <img *ngIf="!((countryPageData$ | async)?.error)" [src]="imgSrc" alt="imageAlt">
-    <div class="content-rigth" *ngIf="!((countryPageData$ | async)?.error)">
-        <h1>{{data?.name?.common}}</h1>
+    {{imageAlt}}
+    <img *ngIf="!((countryPageState$ | async)?.error)" [src]="imgSrc" alt="imageAlt">
+    <div class="content-rigth" *ngIf="!((countryPageState$ | async)?.error)">
+        <h1>{{(countryPageData$|async)?.name?.common}}</h1>
         <div class="content">
             <div class="about-content">
-                <p>{{data?.flags?.alt}}</p>
+                <p>{{(countryPageData$|async)?.flags?.alt}}</p>
                 <div>
                     <h2>
                         Population
                     </h2>
                     <h6 id="population-value">
-                        {{data?.population}} habs
+                        {{(countryPageData$|async)?.population}} habs
                     </h6>
                     <p id="percent">
                         +12% more then, Brazil
@@ -20,23 +21,23 @@
             </div>
             <div class="field-content">
                 <h5>Region</h5>
-                <h6>{{data?.region}}</h6>
+                <h6>{{(countryPageData$|async)?.region}}</h6>
             </div>
             <div class="field-content">
                 <h5>Subregion</h5>
-                <h6>{{data?.subregion}}</h6>
+                <h6>{{(countryPageData$|async)?.subregion}}</h6>
             </div>
             <div class="field-content">
                 <h5>Is Independent</h5>
-                <h6>{{data?.independent}}</h6>
+                <h6>{{(countryPageData$|async)?.independent}}</h6>
             </div>
             <div class="field-content">
                 <h5>Land Locked</h5>
-                <h6>{{data?.landlocked}}</h6>
+                <h6>{{(countryPageData$|async)?.landlocked}}</h6>
             </div>
             <div class="field-content">
                 <h5>Country Area</h5>
-                <h6>{{data?.area}} km²</h6>
+                <h6>{{(countryPageData$|async)?.area}} km²</h6>
             </div>
             <p class="divider"></p>
             <div *ngIf="location; else loadingTemplate">
@@ -49,7 +50,7 @@
         </div>
     </div>
 
-    <app-loading-letter *ngIf="(countryPageData$ | async)?.loading"
+    <app-loading-letter *ngIf="(countryPageState$ | async)?.loading"
         [label]="'Loading your country... '"></app-loading-letter>
-    <app-error-status *ngIf="(countryPageData$ | async)?.error"></app-error-status>
+    <app-error-status *ngIf="(countryPageState$ | async)?.error"></app-error-status>
 </section>
