@@ -1,5 +1,5 @@
 <section id="container">
-    <app-loading-letter *ngIf="(loading$ | async)" [label]="'Loading ... '"></app-loading-letter>
+    <app-loading-letter *ngIf="(githubUserData$ | async)?.loading" [label]="'Loading ... '"></app-loading-letter>
     <section id="content">
         <form [formGroup]="authForm">
             <h1>Use your GitHub Account to auth</h1>

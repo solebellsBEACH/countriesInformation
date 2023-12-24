@@ -43,7 +43,7 @@ export class CountryPageComponent {
           latitude: country.latlng[0],
           longitude: country.latlng[1],
         };
-    });
+    }).unsubscribe();
   }
 
   getCountry(pathName: string) {

@@ -54,7 +54,7 @@ export class HomeComponent implements OnInit {
       // TODO: tranform in private function 
       this.region$.subscribe(region => {
         this.store.dispatch(loadCountriesByRegion({ region }));
-      })
+      }).unsubscribe();
       ToastrHelpers.showSuccess(this.toastr, `Hello ${this.githubLabel}`);
     } else {
       this._navigateToAuth()
