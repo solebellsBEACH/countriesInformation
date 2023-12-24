@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { LoginForm } from './class/LoginForm';
+import { FormBuilder, UntypedFormControl, UntypedFormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IStore } from '../shared/interfaces/state';
-import { loadGitHubUser } from '../store/auth/auth.actions';
 import { ToastrService } from 'ngx-toastr';
 import { ToastrHelpers } from '../shared/helpers/toast';
 import { Router } from '@angular/router';
@@ -19,11 +17,14 @@ import { selectAuthGithubUser } from '../store/auth/auth.selectors';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  authForm: FormGroup;
+
+  authForm = new UntypedFormGroup({
+    username: new UntypedFormControl("", [Validators.required, Validators.minLength(3)])
+  });
+
   githubUserData$: Observable<IGitHubUserState>;
 
   constructor(private store: Store<IStore>, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) {
-    this.authForm = this.createForm(new LoginForm());
     this.githubUserData$ = this.store.select(selectAuthGithubUser);
   }
 
@@ -38,22 +39,39 @@ export class AuthComponent implements OnInit {
     navigateHelpers.navigate(this.router, '/home')
   }
 
-  createForm(loginForm: LoginForm): FormGroup {
-    return this.formBuilder.group({
-      username: [loginForm.username],
-    })
+  get username() {
+    const usernameControl = this.authForm.get('username');
+    return usernameControl
   }
+
+  private _showSubmitToastError(control: UntypedFormGroup, field: string) {
+    const errors = control.get(field)?.errors
+    if (!errors) return
+    else {
+      const errorKey = Object.keys(errors as ValidationErrors)[0]
+      const errorMessages: { [key: string]: string } = {
+        'required': 'This field is required.',
+        'minlength': 'Must be at least 3 characters.',
+        // Add more error messages as needed
+      };
+      const toastMessage: string = errorMessages[errorKey] || "Ops, try again later"
+      ToastrHelpers.showError(this.toastr, toastMessage);
+    }
+  }
+
 
   onSubmit(e: MouseEvent): void {
     e.preventDefault();
+    if (this.username?.valid) { }
+    else this._showSubmitToastError(this.authForm, "username")
     // TODO: CREATE VALIDATORS TO THIS FORM
-    if (this.authForm.value.username) this.store.dispatch(loadGitHubUser({ username: this.authForm.value.username }));
-    else return ToastrHelpers.showError(this.toastr, 'You dont can send a empty field !');
+    // if (this.authForm.value.username) this.store.dispatch(loadGitHubUser({ username: this.authForm.value.username }));
+    // else return ToastrHelpers.showError(this.toastr, 'You dont can send a empty field !');
 
-    this.githubUserData$.subscribe(data => {
-      if (data.error) return
-      if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this._navigateToHome()
-    }).unsubscribe()
+    // this.githubUserData$.subscribe(data => {
+    //   if (data.error) return
+    //   if (StorageHelpers.setLocalStorage('username', this.authForm.value.username).success) this._navigateToHome()
+    // }).unsubscribe()
   }
 
 }

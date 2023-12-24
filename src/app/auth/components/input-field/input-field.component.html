@@ -1,4 +1,5 @@
 <div class="form-group" [formGroup]="parentForm">
     <label for="name">{{label || name}}</label>
-    <input type="text" class="form-control" [name]="name" [formControlName]="name" required [placeholder]="placeholder">
+    <input [ngClass]="highlightError?'highlight-error':''" type="text" class="form-control" [name]="name"
+        [formControlName]="name" required [placeholder]="placeholder">
 </div>
