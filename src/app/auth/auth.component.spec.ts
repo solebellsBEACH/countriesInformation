@@ -1,4 +1,4 @@
-describe('Home Services', () => {
+describe('AuthComponent', () => {
     it('should create the app', () => {
     });
 })
