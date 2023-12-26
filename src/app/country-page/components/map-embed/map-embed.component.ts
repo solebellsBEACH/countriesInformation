@@ -13,7 +13,7 @@ export class MapEmbedComponent implements AfterViewInit {
   @Input() location?: ILocation | null;
 
   constructor() { }
-
+  // TODO: CREATE UNIT TESTS
   ngAfterViewInit() {
     // TODO: CREATE UNIT TESTS
     if (this.mapComponent && this.location) {

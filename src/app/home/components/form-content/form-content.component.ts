@@ -16,7 +16,7 @@ export class FormContentComponent implements OnChanges {
   inputValue: string = '';
 
   showRegionRadioButtons = true;
-
+  // TODO: CREATE UNIT TESTS
   constructor(private store: Store<IStore>) { }
 
   getCountries() {

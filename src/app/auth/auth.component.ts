@@ -25,7 +25,9 @@ export class AuthComponent implements OnInit {
 
   githubUserData$: Observable<IGitHubUserState>;
 
-  constructor(private store: Store<IStore>, private formBuilder: FormBuilder, private toastr: ToastrService, private router: Router) {
+  // TODO: CREATE UNIT TESTS
+
+  constructor(private store: Store<IStore>, private toastr: ToastrService, private router: Router) {
     this.githubUserData$ = this.store.select(selectAuthGithubUser);
   }
 
@@ -53,7 +55,6 @@ export class AuthComponent implements OnInit {
       const errorMessages: { [key: string]: string } = {
         'required': 'This field is required.',
         'minlength': 'Must be at least 3 characters.',
-        // Add more error messages as needed
       };
       const toastMessage: string = errorMessages[errorKey] || "Ops, try again later"
       ToastrHelpers.showError(this.toastr, toastMessage);

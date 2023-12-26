@@ -10,7 +10,7 @@ import { loadCountriesByName } from 'src/app/store/app/app.actions';
 })
 export class AnimatedInputComponent {
   @Input() inputValue: string = '';
-
+  // TODO: CREATE UNIT TESTS
   constructor(private store: Store<IStore>) { }
 
   getCountries() {

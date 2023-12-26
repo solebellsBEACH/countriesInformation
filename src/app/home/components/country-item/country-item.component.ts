@@ -14,6 +14,8 @@ export class CountryItemComponent {
   subregion = '';
   path = '';
 
+  // TODO: CREATE UNIT TESTS
+
   ngOnChanges() {
     if (this.country) {
       const { name, flags, capital, subregion } = this.country;

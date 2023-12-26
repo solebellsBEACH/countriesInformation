@@ -11,6 +11,8 @@ export class FilterButtonComponent {
   @Output() onClick: EventEmitter<string> = new EventEmitter();
   isSelected: boolean = false;
 
+  // TODO: CREATE UNIT TESTS
+
   ngOnChanges() {
     this.isSelected = this.value === this.label;
   }

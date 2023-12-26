@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
-import { Observable, map, take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { IStore } from '../shared/interfaces/state';
 import { loadCountriesByRegion } from '../store/app/app.actions';
 import { Router } from '@angular/router';
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
 
   githubLabel: string = 'UserNotFounded'
   showCountries = false;
-
+  // TODO: CREATE UNIT TESTS
   constructor(private store: Store<IStore>, private router: Router, private toastr: ToastrService) {
     this.countriesList$ = this.store.select(selectAppCountriesList);
     this.countriesData$ = this.store.select(selectAppCountryData);

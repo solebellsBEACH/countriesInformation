@@ -16,7 +16,7 @@ import { selectCountryLocation, selectCountryPageData, selectCountryPageState } 
 })
 export class CountryPageComponent {
   pathName: string | null = null;
-
+  // TODO: CREATE UNIT TESTS
   countryPageState$: Observable<ICountryPageState>
   countryPageData$: Observable<Country | null>
   countryLocation$: Observable<ILocation | null>
