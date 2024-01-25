@@ -6,7 +6,7 @@ import { Regions } from '../../shared/interfaces';
 @Injectable({
   providedIn: 'root',
 })
-export class DataService {
+export class HomeService {
   private apiUrl = 'https://restcountries.com/v3.1/';
 
   constructor(private http: HttpClient) { }

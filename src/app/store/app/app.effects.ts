@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import * as fromAppActions from './app.actions';
-import { DataService } from '../../services/HomeServices/home.service';
+import { HomeService } from '../../services/HomeServices/home.service';
 import { Country } from '../../shared/interfaces/responseBody';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(fromAppActions.loadCountriesByRegion),
       switchMap((props) =>
-        this.dataService.getDataByRegion(props.region).pipe(
+        this.homeService.getDataByRegion(props.region).pipe(
           map((data: Country[]) => {
             return fromAppActions.loadCountriesByRegionSuccess({ countriesList: data.slice(0, 20) });
           }),
@@ -26,7 +26,7 @@ export class AppEffects {
     this.actions$.pipe(
       ofType(fromAppActions.loadCountriesByName),
       switchMap((props) =>
-        this.dataService.getDataByName(props.name).pipe(
+        this.homeService.getDataByName(props.name).pipe(
           map((data: Country[]) => {
             return fromAppActions.loadCountriesByNameSuccess({ countriesList: data.slice(0, 20) });
           }),
@@ -38,6 +38,6 @@ export class AppEffects {
 
   constructor(
     private actions$: Actions,
-    private dataService: DataService,
+    private homeService: HomeService,
   ) { }
 }
