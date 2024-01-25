@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../shared/interfaces/responseBody';
 import { Store } from '@ngrx/store';
-import { Observable, take } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { IStore } from '../shared/interfaces/state';
 import { loadCountriesByRegion } from '../store/app/app.actions';
 import { Router } from '@angular/router';
