@@ -10,7 +10,9 @@ export class LoadingLetterComponent {
   animatedText = '';
   @Input() totalTime = 1000;
 
-  constructor() {}
+  // TODO: CREATE UNIT TESTS
+
+  constructor() { }
 
   ngOnInit(): void {
     this.animateLetters();

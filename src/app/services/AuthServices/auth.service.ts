@@ -9,7 +9,7 @@ export class AuthDataService {
     private apiUrl = 'https://api.github.com/';
 
     constructor(private http: HttpClient) { }
-
+    // TODO: CREATE UNIT TESTS
     getGithubUser(username: string): Observable<any> {
         const url = `${this.apiUrl}users/${username}`;
         return this.http.get(url);

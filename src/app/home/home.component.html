@@ -25,8 +25,9 @@
         <app-country-item [country]="countryItem"
           *ngFor="let countryItem of (countriesList$ | async)"></app-country-item>
       </section>
-      <app-loading-letter *ngIf="(loading$ | async)" [label]="'Loading your countries... '"></app-loading-letter>
-      <app-error-status *ngIf="(error$ | async)"></app-error-status>
+      <app-loading-letter *ngIf="(countriesData$ | async)?.loading"
+        [label]="'Loading your countries... '"></app-loading-letter>
+      <app-error-status *ngIf="(countriesData$ | async)?.error"></app-error-status>
     </div>
   </section>
 </div>

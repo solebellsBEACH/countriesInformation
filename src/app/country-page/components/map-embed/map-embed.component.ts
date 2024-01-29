@@ -10,11 +10,12 @@ import { ILocation } from 'src/app/shared/interfaces';
 })
 export class MapEmbedComponent implements AfterViewInit {
   @ViewChild(MapComponent) mapComponent!: MapComponent;
-  @Input() location?: ILocation;
+  @Input() location?: ILocation | null;
 
   constructor() { }
-
+  // TODO: CREATE UNIT TESTS
   ngAfterViewInit() {
+    // TODO: CREATE UNIT TESTS
     if (this.mapComponent && this.location) {
       const marker: Marker = {
         id: 'country-location',

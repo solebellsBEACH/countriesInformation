@@ -4,7 +4,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import * as fromCountryActions from './auth.actions';
-import { AuthDataService } from 'src/app/auth/auth.service';
+import { AuthDataService } from 'src/app/services/AuthServices/auth.service';
 import { GitHubUser } from 'src/app/shared/interfaces/responseBody';
 
 @Injectable()
